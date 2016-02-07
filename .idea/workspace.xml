@@ -1,35 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="- Ajout d'autres controleurs d'interface graphiques&#10;- Introduction des fenêtres Pop-up avec leur fichier FXML&#10;- Finalisation de l'interface graphique + controleur prédéfinis à 80%&#10;- Architecture du projet modifiée (ajout de dossiers relatif aux modules, les modules similaires sont regroupés entre eux">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/katoyikane/controleur/modules/calculatrice/CoCalculatriceScientifique.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/katoyikane/controleur/modules/etude/CoEtudeFonction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/katoyikane/controleur/modules/solveur/CoSolveurEquation.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/katoyikane/modele/modules/calculatrice/MoCalculatriceScientifique.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/katoyikane/modele/modules/etude/MoEtudeFonction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/katoyikane/modele/modules/solveur/MoSolveurEquation.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/katoyikane/vue/modules/module3_courbe.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/katoyikane/vue/modules/module3_tableau.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/katoyikane/vue/modules/module4_eq_degre2.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/katoyikane/vue/modules/module4_eq_simple.fxml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/katoyikane/vue/popup/PopUpCourbe.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/katoyikane/vue/popup/PopUpEqSecondDegre.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/katoyikane/vue/popup/PopUpEqSimple.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/katoyikane/vue/popup/PopUpTableau.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/UPJV_S6_CALCULATRICE_MULTI/com/katoyikane/controleur/modules/CoCalculatriceSimple.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/UPJV_S6_CALCULATRICE_MULTI/com/katoyikane/modele/modules/MoCalculatriceSimple.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/katoyikane/controleur/modules/CoCalculatriceSimple.java" afterPath="$PROJECT_DIR$/src/com/katoyikane/controleur/modules/calculatrice/CoCalculatriceSimple.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/katoyikane/modele/modules/MoCalculatriceSimple.java" afterPath="$PROJECT_DIR$/src/com/katoyikane/modele/modules/calculatrice/MoCalculatriceSimple.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UPJV_S6_CALCULATRICE_MULTI/com/katoyikane/application/Main.class" afterPath="$PROJECT_DIR$/out/production/UPJV_S6_CALCULATRICE_MULTI/com/katoyikane/application/Main.class" />
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UPJV_S6_CALCULATRICE_MULTI/com/katoyikane/vue/modules/module1_simple.fxml" afterPath="$PROJECT_DIR$/out/production/UPJV_S6_CALCULATRICE_MULTI/com/katoyikane/vue/modules/module1_simple.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UPJV_S6_CALCULATRICE_MULTI/com/katoyikane/vue/modules/module2_scientifique.fxml" afterPath="$PROJECT_DIR$/out/production/UPJV_S6_CALCULATRICE_MULTI/com/katoyikane/vue/modules/module2_scientifique.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UPJV_S6_CALCULATRICE_MULTI/com/katoyikane/vue/modules/module3_etude.fxml" afterPath="$PROJECT_DIR$/out/production/UPJV_S6_CALCULATRICE_MULTI/com/katoyikane/vue/modules/module3_etude.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/katoyikane/vue/modules/module1_simple.fxml" afterPath="$PROJECT_DIR$/src/com/katoyikane/vue/modules/module1_simple.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/katoyikane/vue/modules/module2_scientifique.fxml" afterPath="$PROJECT_DIR$/src/com/katoyikane/vue/modules/module2_scientifique.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/katoyikane/vue/modules/module3_etude.fxml" afterPath="$PROJECT_DIR$/src/com/katoyikane/vue/modules/module3_etude.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/katoyikane/vue/modules/module4_solveur.fxml" afterPath="$PROJECT_DIR$/src/com/katoyikane/vue/modules/module4_solveur.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/UPJV_S6_CALCULATRICE_MULTI/com/katoyikane/vue/modules/module4_solveur.fxml" afterPath="$PROJECT_DIR$/out/production/UPJV_S6_CALCULATRICE_MULTI/com/katoyikane/vue/modules/module4_solveur.fxml" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -157,8 +131,8 @@
       <file leaf-file-name="module4_eq_simple.fxml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/katoyikane/vue/modules/module4_eq_simple.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.32296652">
-              <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+            <state vertical-scroll-proportion="0.64593303">
+              <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -976,6 +950,13 @@
       <updated>1359379246138</updated>
       <workItem from="1359379250712" duration="1302000" />
     </task>
+    <task id="LOCAL-00001" summary="- Ajout d'autres controleurs d'interface graphiques&#10;- Introduction des fenêtres Pop-up avec leur fichier FXML&#10;- Finalisation de l'interface graphique + controleur prédéfinis à 80%&#10;- Architecture du projet modifiée (ajout de dossiers relatif aux modules, les modules similaires sont regroupés entre eux&#10;&#10;#TODO&#10;Finir les controleurs des deux derniers modules.&#10;Commencer la spécification du module1 et du module2">
+      <created>1454886221736</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1454886221736</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -983,11 +964,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="26" y="23" width="1440" height="833" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32839838" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32839838" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1060,7 +1041,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="- Ajout d'autres controleurs d'interface graphiques&#10;- Introduction des fenêtres Pop-up avec leur fichier FXML&#10;- Finalisation de l'interface graphique + controleur prédéfinis à 80%&#10;- Architecture du projet modifiée (ajout de dossiers relatif aux modules, les modules similaires sont regroupés entre eux" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Ajout d'autres controleurs d'interface graphiques&#10;- Introduction des fenêtres Pop-up avec leur fichier FXML&#10;- Finalisation de l'interface graphique + controleur prédéfinis à 80%&#10;- Architecture du projet modifiée (ajout de dossiers relatif aux modules, les modules similaires sont regroupés entre eux" />
+    <MESSAGE value="- Ajout d'autres controleurs d'interface graphiques&#10;- Introduction des fenêtres Pop-up avec leur fichier FXML&#10;- Finalisation de l'interface graphique + controleur prédéfinis à 80%&#10;- Architecture du projet modifiée (ajout de dossiers relatif aux modules, les modules similaires sont regroupés entre eux&#10;&#10;#TODO&#10;Finir les controleurs des deux derniers modules.&#10;Commencer la spécification du module1 et du module2" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Ajout d'autres controleurs d'interface graphiques&#10;- Introduction des fenêtres Pop-up avec leur fichier FXML&#10;- Finalisation de l'interface graphique + controleur prédéfinis à 80%&#10;- Architecture du projet modifiée (ajout de dossiers relatif aux modules, les modules similaires sont regroupés entre eux&#10;&#10;#TODO&#10;Finir les controleurs des deux derniers modules.&#10;Commencer la spécification du module1 et du module2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1350,8 +1332,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/katoyikane/vue/modules/module4_eq_simple.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32296652">
-          <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
+        <state vertical-scroll-proportion="0.64593303">
+          <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
           <folding />
         </state>
       </provider>
