@@ -2,16 +2,19 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.katoyikane.controleur.modules.etude.CoEtudeFonction">
    <children>
       <TitledPane animated="false" collapsible="false" prefHeight="300.0" prefWidth="600.0" text="Vérification de l'expression" textAlignment="CENTER" wrapText="true">
          <content>
@@ -33,22 +36,17 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" text="Vérifier" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+                  <Button fx:id="bt_verifier" mnemonicParsing="false" onAction="#btVerifierClic" prefHeight="30.0" prefWidth="90.0" text="Vérifier" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" text="Réinitialiser" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2">
+                  <Button fx:id="bt_reset" mnemonicParsing="false" onAction="#btResetClic" prefHeight="30.0" prefWidth="90.0" text="Réinitialiser" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.rowSpan="2">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </Button>
-                  <TextField GridPane.columnIndex="1" GridPane.columnSpan="4">
-                     <GridPane.margin>
-                        <Insets left="10.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField editable="false" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="4">
+                  <TextField fx:id="saisie_fonction" GridPane.columnIndex="1" GridPane.columnSpan="4">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
@@ -63,6 +61,29 @@
                         <Image url="@../images/f_de_x_logo.png" />
                      </image>
                   </ImageView>
+                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="24.0" prefWidth="137.0" text="Intervalle :" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                     <children>
+                        <Label alignment="CENTER" text="[">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="saisie_intervalle_inf" alignment="CENTER" prefWidth="40.0" />
+                        <Label alignment="CENTER" text=";">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="saisie_intervalle_sup" alignment="CENTER" prefWidth="40.0" />
+                        <Label alignment="CENTER" text="]">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <ImageView fx:id="vue_latex" fitHeight="49.0" fitWidth="232.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>
             </GridPane>
          </content>
@@ -90,12 +111,12 @@
                         <Image url="@../images/tableauvaleur_logo.png" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Tracer la courbe" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1">
+                  <Button fx:id="bt_courbe" mnemonicParsing="false" onAction="#btCourbeClic" prefHeight="50.0" prefWidth="100.0" text="Tracer la courbe" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Tableau de valeurs" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3">
+                  <Button fx:id="bt_tableau" mnemonicParsing="false" onAction="#btTableauClic" prefHeight="50.0" prefWidth="100.0" text="Tableau de valeurs" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>

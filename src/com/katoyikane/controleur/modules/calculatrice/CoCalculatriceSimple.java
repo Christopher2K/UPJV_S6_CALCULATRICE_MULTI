@@ -1,11 +1,11 @@
-package com.katoyikane.controleur.modules;
+package com.katoyikane.controleur.modules.calculatrice;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-import com.katoyikane.modele.modules.MoCalculatriceSimple;
+import com.katoyikane.modele.modules.calculatrice.MoCalculatriceSimple;
 
 /**
  * Created by christopher on 07/02/16.
@@ -50,12 +50,11 @@ public class CoCalculatriceSimple
     ********** */
 
     /**
-     * Méthodes invoquée lors des clics
+     * Méthodes invoquées lors des clics
+     * L'attribution des écouteurs à un composant se fait dans : src/com.katoyikane/vue/modules/module1_simple.fxml
      */
-    /*
-    Méthode invoquée lors d'un clic sur un bouton de chiffre
-    L'attribution des écouteur à un composant se fait dans : src/com.katoyikane/vue/modules/module1_simple.fxml
-     */
+
+    //Méthode invoquée lors d'un clic sur un bouton de chiffre
     @FXML private void btChiffreOperateurClic(ActionEvent event)
     {
         //On ajoute à la chaine le chiffre ou l'opérateur entré
