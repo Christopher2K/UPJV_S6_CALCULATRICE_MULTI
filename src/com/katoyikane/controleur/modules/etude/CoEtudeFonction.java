@@ -12,6 +12,9 @@ import javafx.scene.image.ImageView;
 /**
  * Created by christopher on 07/02/16.
  */
+/*
+Controleur du troisième onglet de l'application : Etude de fonction
+ */
 public class CoEtudeFonction
 {
     /**

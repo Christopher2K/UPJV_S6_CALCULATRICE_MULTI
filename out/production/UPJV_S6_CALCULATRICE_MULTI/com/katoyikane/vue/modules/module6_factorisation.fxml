@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.katoyikane.controleur.modules.formel.CoFactorisation">
    <children>
       <TitledPane animated="false" collapsible="false" prefHeight="300.0" prefWidth="600.0" text="Vérification de l'expression" textAlignment="CENTER" wrapText="true">
          <content>
@@ -33,22 +33,17 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" text="Vérifier" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+                  <Button fx:id="bt_verifier" mnemonicParsing="false" onAction="#btVerifierClic" prefHeight="30.0" prefWidth="90.0" text="Vérifier" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="90.0" text="Réinitialiser" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2">
+                  <Button fx:id="bt_reset" mnemonicParsing="false" onAction="#btResetClic" prefHeight="30.0" prefWidth="90.0" text="Réinitialiser" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </Button>
-                  <TextField GridPane.columnIndex="1" GridPane.columnSpan="4">
-                     <GridPane.margin>
-                        <Insets left="10.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <TextField editable="false" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="4">
+                  <TextField fx:id="saisie_expression" GridPane.columnIndex="1" GridPane.columnSpan="4">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
@@ -63,6 +58,7 @@
                         <Image url="@../images/f_de_x_logo.png" />
                      </image>
                   </ImageView>
+                  <ImageView fx:id="vue_latex" fitHeight="38.0" fitWidth="386.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="4" />
                </children>
             </GridPane>
          </content>
@@ -83,17 +79,13 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <TextField editable="false" GridPane.columnIndex="1" GridPane.columnSpan="4">
-                     <GridPane.margin>
-                        <Insets left="10.0" />
-                     </GridPane.margin>
-                  </TextField>
                   <ImageView GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                      <image>
                         <Image url="@../images/LaTeX_LOGO.png" />
                      </image>
                   </ImageView>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" text="Afficher la factorisation" wrapText="true" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Button fx:id="btAfficherClic" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" text="Afficher la factorisation" wrapText="true" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <ImageView fx:id="vue_latex_factorisation" fitHeight="48.0" fitWidth="387.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.columnSpan="4" />
                </children>
             </GridPane>
          </content>

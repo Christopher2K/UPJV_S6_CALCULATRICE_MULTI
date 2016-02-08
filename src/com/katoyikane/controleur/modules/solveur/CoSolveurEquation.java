@@ -11,6 +11,9 @@ import javafx.scene.image.ImageView;
 /**
  * Created by christopher on 07/02/16.
  */
+/*
+Controleur du quatrième onglet de l'application : Solveur d'équations
+ */
 public class CoSolveurEquation
 {
     /**
