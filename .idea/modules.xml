@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/UPJV_S6_CALCULATRICE_MULTI.iml" filepath="$PROJECT_DIR$/UPJV_S6_CALCULATRICE_MULTI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/UPJV_S6_CALCULATRICE_MULTI.iml" filepath="$PROJECT_DIR$/.idea/UPJV_S6_CALCULATRICE_MULTI.iml" />
     </modules>
   </component>
 </project>

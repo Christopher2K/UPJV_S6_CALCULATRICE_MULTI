@@ -43,6 +43,7 @@ public class CoCalculatriceSimple
     @FXML private Label affichage_calcul ;
 
     private String calcul = "";                                         //Chaine affichée dans le textArea correspondant au calcul
+    private String nombre = "";                                         //Nombre entre deux opérateurs
     private MoCalculatriceSimple modele = new MoCalculatriceSimple();   //Instance du modèle de calcul simple
 
     /* **********
@@ -55,19 +56,58 @@ public class CoCalculatriceSimple
      */
 
     //Méthode invoquée lors d'un clic sur un bouton de chiffre
-    @FXML private void btChiffreOperateurClic(ActionEvent event)
+    @FXML private void btChiffreClic(ActionEvent event)
     {
         //On ajoute à la chaine le chiffre ou l'opérateur entré
         calcul += this.getBoutonTexte((Button)event.getSource());
+        //On ajout à la chaine concernant le nombre en cours, le chiffre entré ;
+        nombre += this.getBoutonTexte((Button)event.getSource());
         affichage_calcul.setText(calcul);
+
     }
 
-    //Méthodée invoquée lors d'un clic sur le bouton Egale
+    //Méthode invoquée lors d'un clic sur un bouton d'opérateur
+    @FXML private void btOperateurClic(ActionEvent event)
+    {
+        //On envoie au modèle le nombre précédent
+        modele.ajouterNombre(Double.parseDouble(nombre));
+
+        //On ajoute à la chaine l'opérateur passé en argument
+        calcul += this.getBoutonTexte((Button)event.getSource());
+        affichage_calcul.setText(calcul);
+
+        //On indique au modèle quel opérateur on a sélectionné
+        modele.setOperateur(this.getBoutonTexte((Button)event.getSource()));
+
+        //On indique au modèle qu'on a sélectionné un opérateur
+        modele.setOperateurIsSelected(true);
+
+        //On demande l'affichage du résultat courant
+        affichage_resultat.setText(modele.returnResultat());
+
+        //On remet le nombre à zéro
+        nombre = "";
+    }
+
+    //Méthodée invoquée lors d'un clic sur le bouton Egal
     @FXML private void btEgalClic(ActionEvent event)
     {
         //On ajoute à la chaine le signe égal et on passe à la ligne suivante
         calcul = calcul + getBoutonTexte((Button)event.getSource()) ;
         affichage_calcul.setText(calcul);
+
+        //On envoie au modèle le nombre précédent
+        modele.ajouterNombre(Double.parseDouble(nombre));
+
+        //On indique au modèle que l'on a pas sélectionné un opérateur
+        modele.setOperateurIsSelected(false);
+
+        //On demande l'afichage du résultat courant
+        affichage_resultat.setText(modele.returnResultat());
+
+        //On remet le nombre à zéro
+        nombre = "";
+
         //On remet calcul a zéro pour le calcul suivant
         calcul = "" ;
     }
@@ -76,10 +116,12 @@ public class CoCalculatriceSimple
     @FXML private void btClearClic(ActionEvent event)
     {
         //Remise à zéro de calcul
-        calcul = "";
+        calcul = "" ;
         //On efface les zone d'affichage
-        affichage_calcul.setText(calcul);
-        affichage_resultat.setText(calcul);
+        affichage_calcul.setText(calcul) ;
+        affichage_resultat.setText("0") ;
+        //On réinitialise le modèle
+        modele = new MoCalculatriceSimple() ;
     }
 
 
