@@ -118,7 +118,7 @@ public class CoCalculatriceSimple
         calcul = "" ;
         //On efface les zone d'affichage
         affichage_calcul.setText(calcul) ;
-        affichage_resultat.setText("0") ;
+        affichage_resultat.setText("0.O") ;
         //On réinitialise le modèle
         modele = new MoCalculatriceSimple() ;
     }

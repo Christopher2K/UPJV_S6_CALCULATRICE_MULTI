@@ -199,7 +199,7 @@ public class CoCalculatriceScientifique
 
         //On efface les zone d'affichage
         affichage_calcul.setText(calcul);
-        affichage_resultat.setText(calcul);
+        affichage_resultat.setText("0.0");
 
         //On réinitialise le bouton égal
         modele.setEgalIsClicked(false);

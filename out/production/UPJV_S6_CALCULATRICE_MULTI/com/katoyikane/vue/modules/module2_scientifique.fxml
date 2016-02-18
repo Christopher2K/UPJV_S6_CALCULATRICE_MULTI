@@ -22,7 +22,7 @@
                         <Font name="Verdana Italic" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="affichage_resultat" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="40.0" prefWidth="450.0" textAlignment="RIGHT" wrapText="true">
+                  <Label fx:id="affichage_resultat" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="40.0" prefWidth="450.0" text="0.0" textAlignment="RIGHT" wrapText="true">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -45,7 +45,7 @@
          <children>
             <TitledPane collapsible="false" contentDisplay="CENTER" prefHeight="287.0" prefWidth="300.0" text="Nombres" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true">
                <content>
-                  <GridPane prefWidth="300.0">
+                  <GridPane prefHeight="256.0" prefWidth="300.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -79,10 +79,13 @@
                      </padding>
                   </GridPane>
                </content>
+               <font>
+                  <Font size="17.0" />
+               </font>
             </TitledPane>
             <TitledPane animated="false" collapsible="false" prefHeight="287.0" prefWidth="300.0" text="Opérateurs avancés">
                <content>
-                  <GridPane prefWidth="300.0">
+                  <GridPane prefHeight="242.0" prefWidth="300.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -199,6 +202,9 @@
                      </children>
                   </GridPane>
                </content>
+               <font>
+                  <Font size="17.0" />
+               </font>
             </TitledPane>
          </children>
       </HBox>
