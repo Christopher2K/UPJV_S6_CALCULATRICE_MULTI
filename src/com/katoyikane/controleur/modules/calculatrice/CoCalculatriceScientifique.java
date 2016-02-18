@@ -48,10 +48,7 @@ public class CoCalculatriceScientifique
     @FXML private Button bt_puissance ;
     @FXML private Button bt_ln ;
     @FXML private Button bt_exponentielle ;
-    @FXML private Button bt_e ;
     @FXML private Button bt_pi ;
-    @FXML private Button bt_inverse ;
-    @FXML private Button bt_oppose ;
     @FXML private Button bt_clear ;
     @FXML private Button bt_egal ;
     @FXML private Label affichage_resultat ;
@@ -140,14 +137,56 @@ public class CoCalculatriceScientifique
     {
         //On envoit au modèle le calcul courant
         modele.setCalcul(calcul) ;
+        //On affichage le résultat
         affichage_resultat.setText(modele.getResultat());
 
-        //On ajoute à la chaine le signe égal et on passe à la ligne suivante
-        calcul += getBoutonTexte((Button)event.getSource()) ;
+        //On ajoute à la chaine le signe égal
+        affichage_calcul.setText(calcul + "=");
+
+        //On indique au modèle que le bouton égal a été cliqué au moins une fois
+        modele.setEgalIsClicked(true);
+
+        //On remet la variable calcul du modèle a zéro
+        this.modele.reset();
+    }
+
+    //Méthode invoquée lors d'un clic sur le bouton opposé
+    @FXML private void btOpposeClic(ActionEvent event)
+    {
+        //On envoit le calcul au modèle
+        modele.setCalcul(calcul);
+
+        //On ajoute à la chaine l'expression de l'opposé et on l'affiche
+        calcul = "-1*(" + calcul + ")" ;
         affichage_calcul.setText(calcul) ;
 
-        //On remet la variable calcul a zéro pour le calcul suivant ainsi que le modèle
-        calcul = "" ;
+        //On affiche le résultat
+        affichage_resultat.setText(modele.getOppose());
+
+        //On met à jour la variable sensé contenir le calcul en cours
+        calcul = affichage_calcul.getText();
+
+        //On remet la variable calcul du modèle a zéro
+        this.modele.reset();
+    }
+
+    //Méthode invoquée lors d'un clic sur le bouton d'inverse
+    @FXML private void btInverseClic(ActionEvent event)
+    {
+        //On envoit le calcul au modèle
+        modele.setCalcul(calcul);
+
+        //On ajoute à la chaine l'expression de l'inverse et on l'affiche
+        calcul = "1/(" + calcul + ")" ;
+        affichage_calcul.setText(calcul) ;
+
+        //On affiche le résultat
+        affichage_resultat.setText(modele.getInverse());
+
+        //On met à jour la variable sensé contenir le calcul en cours
+        calcul = affichage_calcul.getText();
+
+        //On remet la variable calcul du modèle a zéro
         this.modele.reset();
     }
 
@@ -161,6 +200,9 @@ public class CoCalculatriceScientifique
         //On efface les zone d'affichage
         affichage_calcul.setText(calcul);
         affichage_resultat.setText(calcul);
+
+        //On réinitialise le bouton égal
+        modele.setEgalIsClicked(false);
     }
 
     /* **********
