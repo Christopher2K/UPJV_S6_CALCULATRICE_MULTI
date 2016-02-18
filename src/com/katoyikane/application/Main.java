@@ -23,7 +23,6 @@ public class Main extends Application
     public void start(Stage primaryStage) throws Exception
     {
         Stage fenetrePrincipale = primaryStage;
-
         try
         {
             //Chemin vers le fichier FXML

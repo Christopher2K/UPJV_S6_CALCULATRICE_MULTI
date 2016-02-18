@@ -14,11 +14,11 @@ public class MoCalculatriceSimple
     /**
      * Attributs de classe
      */
-    private String operateur = "" ;                              //Stocke l'opérateur sélectionné par l'utilisateur
+    private String operateur = "" ;                                 //Stocke l'opérateur sélectionné par l'utilisateur
     private boolean operateurIsSelected = false ;                   //Indique si l'utilisateur a sélectionné un opérateur
-    private double resultat = 0.0 ;                               //Résultat incrémenté au fur et a mesure du calcul
-    private String resultatAffichage = "";                      //Résultat final affiché et formaté avec 5 décimales max
-    private DecimalFormat d = new DecimalFormat() ;             //Objet restriction des décimales
+    private double resultat = 0.0 ;                                 //Résultat incrémenté au fur et a mesure du calcul
+    private String resultatAffichage = "";                          //Résultat final affiché et formaté avec 5 décimales max
+    private DecimalFormat d = new DecimalFormat() ;                 //Objet restriction des décimales
 
     /**
      * Constructeur de la classe
@@ -80,7 +80,7 @@ public class MoCalculatriceSimple
     {
         return d.format(resultat);
     }
-    
+
     /**
      * Getters et setters
      */

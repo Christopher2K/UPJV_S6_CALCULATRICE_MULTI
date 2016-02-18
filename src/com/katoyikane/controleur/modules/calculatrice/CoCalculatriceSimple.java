@@ -63,7 +63,6 @@ public class CoCalculatriceSimple
         //On ajout à la chaine concernant le nombre en cours, le chiffre entré ;
         nombre += this.getBoutonTexte((Button)event.getSource());
         affichage_calcul.setText(calcul);
-
     }
 
     //Méthode invoquée lors d'un clic sur un bouton d'opérateur

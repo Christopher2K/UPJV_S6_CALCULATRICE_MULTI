@@ -46,7 +46,7 @@ public class CoCalculatriceScientifique
     @FXML private Button bt_arctan ;
     @FXML private Button bt_racinecarree ;
     @FXML private Button bt_puissance ;
-    @FXML private Button bt_log10 ;
+    @FXML private Button bt_ln ;
     @FXML private Button bt_exponentielle ;
     @FXML private Button bt_e ;
     @FXML private Button bt_pi ;
@@ -69,18 +69,10 @@ public class CoCalculatriceScientifique
      * L'attribution des écouteurs à un composant se fait dans : src/com.katoyikane/vue/modules/module2_scientifique.fxml
      */
 
-    //Méthode invoquée lors d'un clic sur un chiffre ou un des opérateurs classiques
-    @FXML private void btChiffreOperateurClic(ActionEvent event)
+    //Méthode invoquée lors d'un clic sur un chiffre ou un des opérateurs classiques, une parenthèse, une constante
+    @FXML private void btClassiqueClic(ActionEvent event)
     {
         //On ajoute à la chaine le chiffre ou l'opérateur entré
-        calcul += this.getBoutonTexte((Button)event.getSource());
-        affichage_calcul.setText(calcul);
-    }
-
-    //Méthode invoquée lors d'un clic sur une parenthèse
-    @FXML private void btParentheseClic(ActionEvent event)
-    {
-        //On ajoute à la parenthèse voulue par l'utilisateur
         calcul += this.getBoutonTexte((Button)event.getSource());
         affichage_calcul.setText(calcul);
     }
@@ -96,19 +88,19 @@ public class CoCalculatriceScientifique
                 calcul += "cos(" ;
                 break;
             case "arccos" :
-                calcul += "cos^1(" ;
+                calcul += "arccos(" ;
                 break;
             case "sin" :
                 calcul += "sin(" ;
                 break;
             case "arcsin" :
-                calcul += "sin^-1(" ;
+                calcul += "arcsin(" ;
                 break;
             case "tan" :
-                calcul += "tan" ;
+                calcul += "tan(" ;
                 break;
             case "arctan" :
-                calcul += "tan^1" ;
+                calcul += "arctan(" ;
                 break;
         }
         affichage_calcul.setText(calcul);
@@ -122,44 +114,50 @@ public class CoCalculatriceScientifique
         switch (operationScientifique)
         {
             case "√(x)" :
-                calcul += "√(" ;
+                calcul += "sqrt(" ;
                 break ;
             case "^(x)" :
                 calcul += "^(" ;
                 break ;
-            case "log10(x)" :
-                calcul += "log10(" ;
+            case "ln(x)" :
+                calcul += "ln(" ;
                 break ;
             case "e^(x)" :
                 calcul += "e^(" ;
                 break ;
+            case "π" :
+                calcul += "pi" ;
+            case "e" :
+                calcul += "e" ;
         }
-        affichage_calcul.setText(calcul);
-    }
 
-    //Méthode invoquée lors d'un clic sur une constante
-    @FXML private void btConstanteClic(ActionEvent event)
-    {
-        //On ajoute à la chaine la constante selectionnée
-        calcul += this.getBoutonTexte((Button)event.getSource());
+        //On affiche de nouveau le calcul
         affichage_calcul.setText(calcul);
     }
 
     //Méthodée invoquée lors d'un clic sur le bouton Egale
     @FXML private void btEgalClic(ActionEvent event)
     {
+        //On envoit au modèle le calcul courant
+        modele.setCalcul(calcul) ;
+        affichage_resultat.setText(modele.getResultat());
+
         //On ajoute à la chaine le signe égal et on passe à la ligne suivante
         calcul += getBoutonTexte((Button)event.getSource()) ;
-        affichage_calcul.setText(calcul);
-        //On remet calcul a zéro pour le calcul suivant
+        affichage_calcul.setText(calcul) ;
+
+        //On remet la variable calcul a zéro pour le calcul suivant ainsi que le modèle
         calcul = "" ;
+        this.modele.reset();
     }
 
     //Méthode invoquée lors d'un clic sur le bouton Clear
     @FXML private void btClearClic(ActionEvent event)
     {
-        //Remise à zéro de calcul
-        calcul = "";
+        //On remet le string calcul a zéro pour le calcul suivant ainsi que le modèle
+        calcul = "" ;
+        this.modele.reset();
+
         //On efface les zone d'affichage
         affichage_calcul.setText(calcul);
         affichage_resultat.setText(calcul);
@@ -172,6 +170,7 @@ public class CoCalculatriceScientifique
     /**
      * Méthodes propres au controleur
      */
+
     //Méthode retournant le texte du bouton passé en paramètre
     private String getBoutonTexte(Button bt)
     {
