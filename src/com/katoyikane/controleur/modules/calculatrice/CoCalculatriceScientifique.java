@@ -1,10 +1,12 @@
 package com.katoyikane.controleur.modules.calculatrice;
 
+import com.katoyikane.exception.LimiteException;
 import com.katoyikane.modele.modules.calculatrice.MoCalculatriceScientifique;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 
 /**
  * Created by christopher on 07/02/16.
@@ -49,9 +51,10 @@ public class CoCalculatriceScientifique
     @FXML private Button bt_ln ;
     @FXML private Button bt_exponentielle ;
     @FXML private Button bt_pi ;
+    @FXML private Button bt_factorielle ;
     @FXML private Button bt_clear ;
     @FXML private Button bt_egal ;
-    @FXML private Label affichage_resultat ;
+    @FXML private TextArea affichage_resultat ;
     @FXML private Label affichage_calcul ;
 
     private String calcul = "";                                                     //Chaine affichée dans le textArea correspondant au calcul
@@ -124,8 +127,8 @@ public class CoCalculatriceScientifique
                 break ;
             case "π" :
                 calcul += "pi" ;
-            case "e" :
-                calcul += "e" ;
+            case "(x)!" :
+                calcul += "Factorial(" ;
         }
 
         //On affiche de nouveau le calcul
@@ -133,21 +136,32 @@ public class CoCalculatriceScientifique
     }
 
     //Méthodée invoquée lors d'un clic sur le bouton Egale
-    @FXML private void btEgalClic(ActionEvent event)
+    @FXML private void btEgalClic(ActionEvent event) throws LimiteException
     {
+        //Variable temp stockant le resultat
+        String temp ;
         //On envoit au modèle le calcul courant
         modele.setCalcul(calcul) ;
         //On affichage le résultat
-        affichage_resultat.setText(modele.getResultat());
+        try
+        {
+            affichage_resultat.setText(modele.getResultat());
 
-        //On ajoute à la chaine le signe égal
-        affichage_calcul.setText(calcul + "=");
+            //On ajoute à la chaine le signe égal
+            affichage_calcul.setText(calcul + "=");
 
-        //On indique au modèle que le bouton égal a été cliqué au moins une fois
-        modele.setEgalIsClicked(true);
+            //On indique au modèle que le bouton égal a été cliqué au moins une fois
+            modele.setEgalIsClicked(true);
+        }
+        catch (LimiteException e)
+        {
 
-        //On remet la variable calcul du modèle a zéro
-        this.modele.reset();
+        }
+        finally
+        {
+            //On remet la variable calcul du modèle a zéro
+            this.modele.reset();
+        }
     }
 
     //Méthode invoquée lors d'un clic sur le bouton opposé

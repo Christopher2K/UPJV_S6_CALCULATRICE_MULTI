@@ -1,9 +1,13 @@
 package com.katoyikane.modele.modules.calculatrice;
 
 //Importation de Symja
+import com.katoyikane.exception.LimiteException;
 import org.matheclipse.core.basic.Config ;
 import org.matheclipse.core.eval.ExprEvaluator;
 import org.matheclipse.core.interfaces.IExpr;
+import org.matheclipse.core.reflection.system.*;
+
+//TODO faire les exceptions
 
 /**
  * Created by christopher on 07/02/16.
@@ -37,14 +41,27 @@ public class MoCalculatriceScientifique
      * Méthode du modèle de calcul
      */
     //Méthode renvoyant le résultat de l'expression passée en argument
-    public String getResultat()
+    public String getResultat() throws LimiteException
     {
+        String ret = "" ;
         //On ferme la parenthèse pour former une expression valide
         this.calcul += ")" ;
         //Evaluation de l'expression entrée par l'utilisateur
         resultat = moteurCalcul.evaluate(this.calcul);
         //Retour du résultat sous forme de String
-        return resultat.toString();
+
+        //Si on observe un dépassement de la capacité de la fonction Symhja N, on lève l'exception
+        if (resultat.toString() == "Infinity" || resultat.toString() == "NaN")
+        {
+            ret = "Limite dépassées";
+            throw new LimiteException(this.calcul) ;
+        }
+        else
+        {
+            ret = resultat.toString();
+        }
+        System.out.println("Fin de la méthode");
+        return ret;
     }
 
     //Méthode renvoyant l'inverse de l'expression passée en argument

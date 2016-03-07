@@ -2,6 +2,8 @@ package com.katoyikane.modele.modules.calculatrice;
 
 import java.text.DecimalFormat;
 
+//TODO faire les exceptions
+
 /**
  * Created by christopher on 07/02/16.
  */
@@ -30,7 +32,7 @@ public class MoCalculatriceSimple
     }
 
     /**
-     * Méthode du modèle de calcul
+     * Méthodes du modèle de calcul
      */
 
     //Méthode invoquée à la sélection d'un opérateur
@@ -75,10 +77,16 @@ public class MoCalculatriceSimple
         this.setOperateurIsSelected(false);
     }
 
-    //Méthode invoquée pour l'affichage du résultat
-    public String returnResultat()
+    //Méthode invoquée pour l'affichage du résultat final
+    public String returnResultatFinal()
     {
         return d.format(resultat);
+    }
+
+    //Méthode invoquée pour l'affichage du résultat intermédiaire
+    public String returnResultat()
+    {
+        return Double.toString(resultat) ;
     }
 
     /**

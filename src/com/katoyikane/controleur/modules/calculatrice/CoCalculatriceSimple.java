@@ -1,5 +1,7 @@
 package com.katoyikane.controleur.modules.calculatrice;
 
+import com.katoyikane.exception.OperateurException;
+import com.katoyikane.exception.SyntaxeCalculException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -42,9 +44,9 @@ public class CoCalculatriceSimple
     @FXML private Label affichage_resultat ;
     @FXML private Label affichage_calcul ;
 
-    private String calcul = "";                                         //Chaine affichée dans le textArea correspondant au calcul
-    private String nombre = "";                                         //Nombre entre deux opérateurs
-    private MoCalculatriceSimple modele = new MoCalculatriceSimple();   //Instance du modèle de calcul simple
+    private String calcul = "";                                             //Chaine affichée dans le textArea correspondant au calcul
+    private String nombre = "";                                             //Nombre entre deux opérateurs
+    private MoCalculatriceSimple modele = new MoCalculatriceSimple();       //Instance du modèle de calcul simple
 
     /* **********
     *************
@@ -66,49 +68,72 @@ public class CoCalculatriceSimple
     }
 
     //Méthode invoquée lors d'un clic sur un bouton d'opérateur
-    @FXML private void btOperateurClic(ActionEvent event)
+    @FXML private void btOperateurClic(ActionEvent event) throws OperateurException
     {
-        //On envoie au modèle le nombre précédent
-        modele.ajouterNombre(Double.parseDouble(nombre));
+        if (nombre == "")
+            //Exception levée si on clic sur un opérateu ralors que le nombre est vide
+            throw new OperateurException(this.getBoutonTexte((Button) event.getSource()));
+        else
+        {
+            //On envoie au modèle le nombre précédent
+            modele.ajouterNombre(Double.parseDouble(nombre));
 
-        //On ajoute à la chaine l'opérateur passé en argument
-        calcul += this.getBoutonTexte((Button)event.getSource());
-        affichage_calcul.setText(calcul);
+            //On ajoute à la chaine l'opérateur passé en argument
+            calcul += this.getBoutonTexte((Button) event.getSource());
+            affichage_calcul.setText(calcul);
 
-        //On indique au modèle quel opérateur on a sélectionné
-        modele.setOperateur(this.getBoutonTexte((Button)event.getSource()));
+            //On indique au modèle quel opérateur on a sélectionné
+            modele.setOperateur(this.getBoutonTexte((Button) event.getSource()));
 
-        //On indique au modèle qu'on a sélectionné un opérateur
-        modele.setOperateurIsSelected(true);
+            //On indique au modèle qu'on a sélectionné un opérateur
+            modele.setOperateurIsSelected(true);
 
-        //On demande l'affichage du résultat courant
-        affichage_resultat.setText(modele.returnResultat());
+            //On demande l'affichage du résultat courant
+            affichage_resultat.setText(modele.returnResultat());
 
-        //On remet le nombre à zéro
-        nombre = "";
+            //On remet le nombre à zéro
+            nombre = "";
+        }
     }
 
     //Méthodée invoquée lors d'un clic sur le bouton Egal
-    @FXML private void btEgalClic(ActionEvent event)
+    @FXML private void btEgalClic(ActionEvent event) throws SyntaxeCalculException, ArithmeticException
     {
-        //On ajoute à la chaine le signe égal et on passe à la ligne suivante
-        calcul = calcul + getBoutonTexte((Button)event.getSource()) ;
-        affichage_calcul.setText(calcul);
+        try
+        {
+            if (isOperateur(calcul.charAt(calcul.length() -1)))
+            {
+                //Exception levée si le calcul se termine par un opérateur
+                throw new SyntaxeCalculException(Character.toString(calcul.charAt(calcul.length() -1))) ;
+            }
+            else
+            {
+                //On ajoute à la chaine le signe égal et on passe à la ligne suivante
+                calcul = calcul + getBoutonTexte((Button)event.getSource()) ;
+                affichage_calcul.setText(calcul);
 
-        //On envoie au modèle le nombre précédent
-        modele.ajouterNombre(Double.parseDouble(nombre));
+                //On envoie au modèle le nombre précédent
+                modele.ajouterNombre(Double.parseDouble(nombre));
 
-        //On indique au modèle que l'on a pas sélectionné un opérateur
-        modele.setOperateurIsSelected(false);
+                //On indique au modèle que l'on a pas sélectionné un opérateur
+                modele.setOperateurIsSelected(false);
 
-        //On demande l'afichage du résultat courant
-        affichage_resultat.setText(modele.returnResultat());
+                //On demande l'afichage du résultat courant
+                affichage_resultat.setText(modele.returnResultatFinal());
 
-        //On remet le nombre à zéro
-        nombre = "";
+                //On remet le nombre à zéro
+                nombre = "";
 
-        //On remet calcul a zéro pour le calcul suivant
-        calcul = "" ;
+                //On remet calcul a zéro pour le calcul suivant
+                calcul = "" ;
+            }
+
+        }
+        //Possibles erreurs de dépassement
+        catch(ArithmeticException e)
+        {
+            affichage_resultat.setText("Inf");
+        }
     }
 
     //Méthode invoquée lors d'un clic sur le bouton Clear
@@ -118,7 +143,7 @@ public class CoCalculatriceSimple
         calcul = "" ;
         //On efface les zone d'affichage
         affichage_calcul.setText(calcul) ;
-        affichage_resultat.setText("0.O") ;
+        affichage_resultat.setText("0.0") ;
         //On réinitialise le modèle
         modele = new MoCalculatriceSimple() ;
     }
@@ -135,5 +160,18 @@ public class CoCalculatriceSimple
     private String getBoutonTexte(Button bt)
     {
         return bt.getText();
+    }
+
+    //Méthode vérifiant si tel caractère est un opérateur
+    private boolean isOperateur(char c)
+    {
+        if (c == '+' || c == '-' || c == '*' || c == '/')
+        {
+            return true ;
+        }
+        else
+        {
+            return false ;
+        }
     }
 }

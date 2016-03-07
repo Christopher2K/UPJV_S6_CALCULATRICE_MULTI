@@ -87,6 +87,9 @@
                </children>
             </GridPane>
          </content>
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
       </TitledPane>
       <TitledPane animated="false" collapsible="false" prefHeight="200.0" prefWidth="600.0" text="Options disponibles" textAlignment="CENTER" wrapText="true">
          <content>
@@ -124,6 +127,9 @@
                </children>
             </GridPane>
          </content>
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
       </TitledPane>
    </children>
 </VBox>

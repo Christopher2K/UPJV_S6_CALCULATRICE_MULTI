@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -25,19 +27,19 @@
                         <Font name="Verdana Italic" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="affichage_resultat" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="40.0" prefWidth="450.0" text="0.0" textAlignment="RIGHT" wrapText="true">
+                  <TextArea fx:id="affichage_resultat1" editable="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="440.0" scrollLeft="1230923.0" text="0.0">
                      <font>
-                        <Font name="System Bold" size="20.0" />
+                        <Font name="Verdana Bold" size="13.0" />
                      </font>
-                  </Label>
+                  </TextArea>
                </children>
             </VBox>
-            <Button fx:id="bt_egal" mnemonicParsing="false" onAction="#btEgalClic" prefHeight="80.0" prefWidth="116.0" text="=">
+            <Button fx:id="bt_egal" mnemonicParsing="false" onAction="#btEgalClic" prefHeight="90.0" prefWidth="116.0" text="=">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="bt_clear" mnemonicParsing="false" onAction="#btClearClic" prefHeight="80.0" prefWidth="40.0" text="C">
+            <Button fx:id="bt_clear" mnemonicParsing="false" onAction="#btClearClic" prefHeight="90.0" prefWidth="40.0" text="C">
                <HBox.margin>
                   <Insets right="5.0" />
                </HBox.margin>
@@ -46,9 +48,9 @@
       </HBox>
       <HBox prefHeight="307.0" prefWidth="600.0">
          <children>
-            <TitledPane animated="false" collapsible="false" prefHeight="287.0" prefWidth="302.0" text="Nombres" textAlignment="CENTER">
+            <TitledPane animated="false" collapsible="false" prefHeight="300.0" prefWidth="300.0" text="Nombres" textAlignment="CENTER">
                <content>
-                  <GridPane prefWidth="300.0">
+                  <GridPane>
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -83,12 +85,12 @@
                   </GridPane>
                </content>
                <font>
-                  <Font size="17.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
             </TitledPane>
-            <TitledPane animated="false" collapsible="false" prefHeight="287.0" prefWidth="300.0" text="Operateurs">
+            <TitledPane animated="false" collapsible="false" prefHeight="300.0" prefWidth="300.0" text="Operateurs">
                <content>
-                  <GridPane prefWidth="300.0">
+                  <GridPane cacheShape="false" centerShape="false" pickOnBounds="false" scaleShape="false">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -123,10 +125,13 @@
                            </GridPane.margin>
                         </Button>
                      </children>
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis>
                   </GridPane>
                </content>
                <font>
-                  <Font size="17.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
             </TitledPane>
          </children>
