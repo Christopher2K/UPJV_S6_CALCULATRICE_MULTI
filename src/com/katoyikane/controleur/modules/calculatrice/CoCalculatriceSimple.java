@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 import com.katoyikane.modele.modules.calculatrice.MoCalculatriceSimple;
+import javafx.scene.control.TextArea;
 
 /**
  * Created by christopher on 07/02/16.
@@ -24,29 +25,29 @@ public class CoCalculatriceSimple
     Liste des composants graphiques présent dans cet onglet
     En cas de modification, consulter : src/com.katoyikane/vue/modules/module1_simple.fxml
      */
-    @FXML private Button bt_1 ;
-    @FXML private Button bt_2 ;
-    @FXML private Button bt_3 ;
-    @FXML private Button bt_4 ;
-    @FXML private Button bt_5 ;
-    @FXML private Button bt_6 ;
-    @FXML private Button bt_7 ;
-    @FXML private Button bt_8 ;
-    @FXML private Button bt_9 ;
-    @FXML private Button bt_0 ;
-    @FXML private Button bt_point ;
-    @FXML private Button bt_plus ;
-    @FXML private Button bt_moins ;
-    @FXML private Button bt_multiplication ;
-    @FXML private Button bt_division ;
-    @FXML private Button bt_clear ;
-    @FXML private Button bt_egal ;
-    @FXML private Label affichage_resultat ;
-    @FXML private Label affichage_calcul ;
+    @FXML private Button    bt_1 ;
+    @FXML private Button    bt_2 ;
+    @FXML private Button    bt_3 ;
+    @FXML private Button    bt_4 ;
+    @FXML private Button    bt_5 ;
+    @FXML private Button    bt_6 ;
+    @FXML private Button    bt_7 ;
+    @FXML private Button    bt_8 ;
+    @FXML private Button    bt_9 ;
+    @FXML private Button    bt_0 ;
+    @FXML private Button    bt_point ;
+    @FXML private Button    bt_plus ;
+    @FXML private Button    bt_moins ;
+    @FXML private Button    bt_multiplication ;
+    @FXML private Button    bt_division ;
+    @FXML private Button    bt_clear ;
+    @FXML private Button    bt_egal ;
+    @FXML private TextArea  affichage_resultat ;
+    @FXML private Label     affichage_calcul ;
 
-    private String calcul = "";                                             //Chaine affichée dans le textArea correspondant au calcul
-    private String nombre = "";                                             //Nombre entre deux opérateurs
-    private MoCalculatriceSimple modele = new MoCalculatriceSimple();       //Instance du modèle de calcul simple
+    private String                  calcul = "";                                             //Chaine affichée dans le textArea correspondant au calcul
+    private String                  nombre = "";                                             //Nombre entre deux opérateurs
+    private MoCalculatriceSimple    modele = new MoCalculatriceSimple();                     //Instance du modèle de calcul simple
 
     /* **********
     *************
@@ -62,8 +63,10 @@ public class CoCalculatriceSimple
     {
         //On ajoute à la chaine le chiffre ou l'opérateur entré
         calcul += this.getBoutonTexte((Button)event.getSource());
+
         //On ajout à la chaine concernant le nombre en cours, le chiffre entré ;
         nombre += this.getBoutonTexte((Button)event.getSource());
+
         affichage_calcul.setText(calcul);
     }
 

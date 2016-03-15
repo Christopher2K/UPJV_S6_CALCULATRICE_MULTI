@@ -60,7 +60,6 @@ public class MoCalculatriceScientifique
         {
             ret = resultat.toString();
         }
-        System.out.println("Fin de la méthode");
         return ret;
     }
 

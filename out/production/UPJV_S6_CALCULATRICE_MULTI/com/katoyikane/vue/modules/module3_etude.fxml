@@ -36,17 +36,17 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button fx:id="bt_verifier" mnemonicParsing="false" onAction="#btVerifierClic" prefHeight="30.0" prefWidth="90.0" text="Vérifier" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+                  <Button fx:id="bt_verifier" mnemonicParsing="false" onAction="#btVerifierClic" prefHeight="30.0" prefWidth="90.0" text="Valider" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="bt_reset" mnemonicParsing="false" onAction="#btResetClic" prefHeight="30.0" prefWidth="90.0" text="Réinitialiser" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.rowSpan="2">
+                  <Button fx:id="bt_reset" mnemonicParsing="false" onAction="#btResetClic" prefHeight="30.0" prefWidth="90.0" text="Reset" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.rowSpan="2">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
                   </Button>
-                  <TextField fx:id="saisie_fonction" GridPane.columnIndex="1" GridPane.columnSpan="4">
+                  <TextField fx:id="saisie_fonction" prefHeight="23.0" prefWidth="377.0" GridPane.columnIndex="1" GridPane.columnSpan="4">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
@@ -61,8 +61,8 @@
                         <Image url="@../images/f_de_x_logo.png" />
                      </image>
                   </ImageView>
-                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="24.0" prefWidth="137.0" text="Intervalle :" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="25.0" prefWidth="94.0" text="Intervalle :" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <HBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="160.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
                      <children>
                         <Label alignment="CENTER" text="[">
                            <font>
@@ -81,12 +81,45 @@
                               <Font size="22.0" />
                            </font>
                         </Label>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="95.0" text="Pas :" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets left="3.0" />
+                     </GridPane.margin>
+                  </HBox>
+                  <TextField fx:id="vue_latex" editable="false" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="Courier Bold" size="13.0" />
+                     </font>
+                  </TextField>
+                  <HBox alignment="CENTER_LEFT" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <children>
+                        <TextField fx:id="saisie_pas" prefHeight="25.0" prefWidth="40.0">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </TextField>
                      </children>
                   </HBox>
-                  <ImageView fx:id="vue_latex" fitHeight="49.0" fitWidth="232.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="95.0" text="Inconnue :" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                  <HBox alignment="CENTER_LEFT" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                     <children>
+                        <TextField fx:id="saisie_inconnue" prefHeight="25.0" prefWidth="40.0">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
                </children>
             </GridPane>
          </content>
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
       </TitledPane>
       <TitledPane animated="false" collapsible="false" prefHeight="200.0" prefWidth="600.0" text="Options disponibles" textAlignment="CENTER" wrapText="true">
          <content>
@@ -124,6 +157,9 @@
                </children>
             </GridPane>
          </content>
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
       </TitledPane>
    </children>
 </VBox>

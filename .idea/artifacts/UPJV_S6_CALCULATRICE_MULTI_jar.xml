@@ -1,14 +1,13 @@
 <component name="ArtifactManager">
-  <artifact type="jar" name="UPJV_S6_CALCULATRICE_MULTI:jar">
+  <artifact type="jar" build-on-make="true" name="UPJV_S6_CALCULATRICE_MULTI:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/UPJV_S6_CALCULATRICE_MULTI_jar</output-path>
     <root id="archive" name="UPJV_S6_CALCULATRICE_MULTI.jar">
-      <element id="module-output" name="UPJV_S6_CALCULATRICE_MULTI" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Java/Librairies/symjaMMA/symja-2016-01-09.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Java/Librairies/symjaMMA/COMMONS_MATH4_SYMJA.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../../Java/Librairies/symjaMMA/log4j-1.2.11.jar" path-in-jar="/" />
       <element id="file-copy" path="$PROJECT_DIR$/../../Java/Librairies/symjaMMA/COMMONS_MATH4_SYMJA.jar" />
       <element id="file-copy" path="$PROJECT_DIR$/../../Java/Librairies/symjaMMA/symja-2016-01-09.jar" />
-      <element id="file-copy" path="$PROJECT_DIR$/../../Java/Librairies/symjaMMA/log4j-1.2.11.jar" />
+      <element id="module-output" name="UPJV_S6_CALCULATRICE_MULTI" />
     </root>
   </artifact>
 </component>
