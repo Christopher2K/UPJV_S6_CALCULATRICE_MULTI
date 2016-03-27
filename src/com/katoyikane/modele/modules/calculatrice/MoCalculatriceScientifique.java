@@ -7,8 +7,6 @@ import org.matheclipse.core.eval.ExprEvaluator;
 import org.matheclipse.core.interfaces.IExpr;
 import org.matheclipse.core.reflection.system.*;
 
-//TODO faire les exceptions
-
 /**
  * Created by christopher on 07/02/16.
  */

@@ -7,13 +7,7 @@ import com.katoyikane.vue.popup.PopUpTableau;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
-import javafx.scene.text.Text;
-import org.matheclipse.core.eval.ExprEvaluator;
-import org.matheclipse.core.interfaces.IExpr;
-import org.matheclipse.parser.client.SyntaxError;
 
 /**
  * Created by christopher on 07/02/16.
@@ -30,10 +24,10 @@ public class CoEtudeFonction
     Liste des composants graphiques présent dans cet onglet
     En cas de modification, consulter : src/com.katoyikane/vue/modules/module3_etude.fxml
      */
-    @FXML private Button    bt_verifier ;
+    @FXML private Button    bt_valider;
     @FXML private Button    bt_reset ;
     @FXML private Button    bt_courbe ;
-    @FXML private Button    bt_tableau ;
+    @FXML private Button    bt_export;
     @FXML private TextField saisie_fonction ;
     @FXML private TextField saisie_intervalle_inf ;
     @FXML private TextField saisie_intervalle_sup ;
@@ -53,12 +47,20 @@ public class CoEtudeFonction
      * L'attribution des écouteurs à un composant se fait dans : src/com.katoyikane/vue/modules/module3_etude.fxml
      */
     //Méthode invoquée lors d'un clic sur le bouton de vérification
-    @FXML private void btVerifierClic(ActionEvent event) throws IntervalleException, InconnueException, SyntaxeFonctionException, PasException
+    @FXML private void btValiderClic(ActionEvent event) throws InformationMissingException, IntervalleException, InconnueException, SyntaxeFonctionException, PasException
     {
         //On réinitialise le modèle
         modele = new MoEtudeFonction();
         try
         {
+            //Vérification de l'intégrité des données
+            modele.verifierIntegrite(
+                    saisie_fonction.getText(),
+                    saisie_inconnue.getText(),
+                    saisie_intervalle_inf.getText(),
+                    saisie_intervalle_sup.getText(),
+                    saisie_pas.getText());
+
             //Vérification de l'expression
             modele.verifierSyntaxe(saisie_fonction.getText());
             modele.verifierInconnueExpression();
@@ -72,16 +74,20 @@ public class CoEtudeFonction
 
 
             //On demande au modèle de traiter les données
-            //modele.calcul();
+            modele.calcul();
 
             //On affiche le code laTex correspondant à l'expression
             vue_latex.setText(modele.generationLatex());
-        }
-        catch (InconnueException e)         {modele.reset();}
-        catch (SyntaxeFonctionException e)  {modele.reset();}
-        catch (IntervalleException e)       {modele.reset();}
-        catch (PasException e)              {modele.reset();}
 
+            //On rend les boutons d'options accesibles
+            bt_courbe.setDisable(false);
+            bt_export.setDisable(false);
+        }
+        catch (InconnueException e)          {modele.reset();}
+        catch (SyntaxeFonctionException e)   {modele.reset();}
+        catch (IntervalleException e)        {modele.reset();}
+        catch (PasException e)               {modele.reset();}
+        catch (InformationMissingException e){modele.reset();}
     }
 
     //Méthode invoquée lors d'un clic sur le bouton de réinitialisation
@@ -92,6 +98,10 @@ public class CoEtudeFonction
         saisie_intervalle_sup.setText("");
         saisie_intervalle_inf.setText("");
         saisie_fonction.setText("");
+        saisie_pas.setText("");
+        saisie_inconnue.setText("");
+        bt_courbe.setDisable(true);
+        bt_export.setDisable(true);
         modele.reset();
     }
 
@@ -103,10 +113,9 @@ public class CoEtudeFonction
     }
 
     //Méthode invoquée lors d'un clic sur le bouton de génération de tableau
-    @FXML private void btTableauClic(ActionEvent event) throws Exception
+    @FXML private void btExportClic(ActionEvent event) throws Exception
     {
-        //Affiche le pop-up contenant le tableau de valeurs
-        PopUpTableau.afficher(modele.getIndices(), modele.getResultats());
+        modele.export();
     }
 
     /* **********

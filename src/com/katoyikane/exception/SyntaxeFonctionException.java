@@ -10,7 +10,7 @@ public class SyntaxeFonctionException extends Exception
 {
     public SyntaxeFonctionException()
     {
-        Alert alert = new Alert(Alert.AlertType.ERROR, "Erreur de syntaxe de l'expression. Il doit y avoir une seule inconnue. Vérifiez les parenthèses également.", ButtonType.CLOSE);
+        Alert alert = new Alert(Alert.AlertType.ERROR, "Erreur de syntaxe de l'expression. Vérifiez si vos fonctions sont correctement orthographiées.", ButtonType.CLOSE);
         alert.showAndWait();
     }
 }

@@ -1,13 +1,9 @@
 package com.katoyikane.vue.popup;
 
 import com.katoyikane.controleur.popup.CoPopUpTableau;
-import com.sun.tools.javac.util.Name;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -22,7 +18,7 @@ import java.util.ArrayList;
 public class PopUpTableau
 {
     //Méthode d'affichage de la fenêtre
-    public static void afficher(ArrayList<Integer> indices ,ArrayList<String> resultats) throws Exception
+    public static void afficher(ArrayList<Double> indices , ArrayList<String> resultats) throws Exception
     {
         //Création d'une fenêtre vide
         Stage fenetreTableau = new Stage();

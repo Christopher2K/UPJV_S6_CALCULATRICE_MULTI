@@ -36,7 +36,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button fx:id="bt_verifier" mnemonicParsing="false" onAction="#btVerifierClic" prefHeight="30.0" prefWidth="90.0" text="Valider" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+                  <Button fx:id="bt_valider" mnemonicParsing="false" onAction="#btValiderClic" prefHeight="30.0" prefWidth="90.0" text="Valider" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets />
                      </GridPane.margin>
@@ -51,7 +51,7 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </TextField>
-                  <ImageView GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                  <ImageView GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="CENTER">
                      <image>
                         <Image url="@../images/LaTeX_LOGO.png" />
                      </image>
@@ -87,7 +87,7 @@
                         <Insets left="3.0" />
                      </GridPane.margin>
                   </HBox>
-                  <TextField fx:id="vue_latex" editable="false" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="4">
+                  <TextField fx:id="vue_latex" editable="false" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="4" GridPane.rowSpan="2">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
@@ -144,12 +144,12 @@
                         <Image url="@../images/tableauvaleur_logo.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="bt_courbe" mnemonicParsing="false" onAction="#btCourbeClic" prefHeight="50.0" prefWidth="100.0" text="Tracer la courbe" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1">
+                  <Button fx:id="bt_courbe" disable="true" mnemonicParsing="false" onAction="#btCourbeClic" prefHeight="50.0" prefWidth="100.0" text="Tracer la courbe" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="bt_tableau" mnemonicParsing="false" onAction="#btTableauClic" prefHeight="50.0" prefWidth="100.0" text="Tableau de valeurs" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3">
+                  <Button fx:id="bt_export" disable="true" mnemonicParsing="false" onAction="#btExportClic" prefHeight="50.0" prefWidth="100.0" text="Exporter les données" textAlignment="CENTER" wrapText="true" GridPane.columnIndex="3">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>

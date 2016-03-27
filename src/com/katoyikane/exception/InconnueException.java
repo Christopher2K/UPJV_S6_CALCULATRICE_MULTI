@@ -2,9 +2,12 @@ package com.katoyikane.exception;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-
+//TODO REDIGER LES EXCEPTIONS PAR RAPPORT À CETTE SYNTAXE
 /**
  * Created by christopher on 13/03/16.
+ */
+/*
+Exceptions générées par MoEtudefonction.verifierInconnueExpression
  */
 public class InconnueException extends Exception
 {
@@ -51,15 +54,20 @@ public class InconnueException extends Exception
                 alert.setContentText("L'inconnue ne peut pas être constituée de la lettre e.");
                 alert.showAndWait();
                 break;
-            /*
-            Exceptions générées par MoEtudefonction.verifierInconnueExpression
-             */
             case 5:
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Erreur : inconnue");
                 alert.setHeaderText("Plusieurs inconnues.");
                 alert.setContentText("Il ne peut pas y avoir plus d'une inconnue dans l'expression.");
                 alert.showAndWait();
+                break;
+            case 6:
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur : inconnue");
+                alert.setHeaderText("Inconnne inexistante");
+                alert.setContentText("L'inconnue entrée ne figure pas dans la liste des inconnues des expression entrées précedement.");
+                alert.showAndWait();
+                break;
         }
     }
 }

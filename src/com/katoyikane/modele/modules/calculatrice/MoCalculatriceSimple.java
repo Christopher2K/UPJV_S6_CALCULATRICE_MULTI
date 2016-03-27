@@ -2,7 +2,6 @@ package com.katoyikane.modele.modules.calculatrice;
 
 import java.text.DecimalFormat;
 
-//TODO faire les exceptions
 
 /**
  * Created by christopher on 07/02/16.

@@ -1,17 +1,16 @@
 package com.katoyikane.modele.modules.etude;
 
-import com.katoyikane.exception.InconnueException;
-import com.katoyikane.exception.IntervalleException;
-import com.katoyikane.exception.PasException;
-import com.katoyikane.exception.SyntaxeFonctionException;
+import com.katoyikane.exception.*;
 import org.matheclipse.core.eval.ExprEvaluator;
 import org.matheclipse.core.interfaces.IExpr;
 import org.matheclipse.parser.client.SyntaxError;
 
+import java.io.File;
+import java.lang.Math;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.Date;
 
 /**
  * Created by christopher on 07/02/16.
@@ -27,15 +26,19 @@ public class MoEtudeFonction
      */
     private int                 itv_bas         = 0 ;
     private int                 itv_haut        = 0 ;
-    private double              pas             = 0.0 ;
+    private float pas           = 0f ;
     private String              expression        = "" ;                                  //Stocke la fonction entrée par l'utilisateur si elle est validée
     private String              inconnue ;                                                 //Stocke la lettre de l'inconnu de la fonction
     private String              tempInconnue ;                                             //Stock l'inconnue déterminée lors de la vérification de l'expression
-    private ArrayList<Integer>  indices         = new ArrayList<Integer>();                     //Contient la liste d'indices entrée par l'utilisateur
+    private ArrayList<Double>   indices         = new ArrayList<>();                     //Contient la liste d'indices entrée par l'utilisateur
     private ArrayList<String>   resultats       = new ArrayList<String>();                     //Contient la liste des résultats selon les indices
     private DecimalFormat       df              = new DecimalFormat() ;                   //Objet restriction des décimales
     private boolean             isInconnue      = false ;
 
+    private final ArrayList<Character> operateurs = new ArrayList<Character>(Arrays.asList('+', '-', '*', '/', '^', '(', ')')) ;     //Liste stockant les opérateurs utiles ici
+
+    private File f ;
+    private Date date;
 
     private ExprEvaluator       moteurCalcul    = new ExprEvaluator(false, 1);            //Création d'un objet prenant en compte des expressions de calculs de type IExpr
     private IExpr               resultat ;                                                //Variable stockant le résultat renvoyé par la méthode de calcul de l'objet ExprEvaluator
@@ -90,7 +93,7 @@ public class MoEtudeFonction
         return resultats;
     }
 
-    public ArrayList<Integer>   getIndices() {
+    public ArrayList<Double> getIndices() {
         return indices;
     }
 
@@ -110,11 +113,11 @@ public class MoEtudeFonction
         this.tempInconnue = tempInconnu;
     }
 
-    public double getPas() {
+    public float getPas() {
         return pas;
     }
 
-    public void setPas(double pas) {
+    public void setPas(float pas) {
         this.pas = pas;
     }
 
@@ -140,18 +143,23 @@ public class MoEtudeFonction
         }
     }
 
+    //Méthode invoquée pour vérifier l'intégrité des données
+    public void verifierIntegrite(String fonction, String inconnue, String itv1, String itv2, String pas) throws  InformationMissingException
+    {
+        if (fonction.isEmpty())
+            throw new InformationMissingException(1);
+        else if (inconnue.isEmpty())
+            throw new InformationMissingException(2);
+        else if (itv1.isEmpty() || itv2.isEmpty())
+            throw new InformationMissingException(3);
+        else if (pas.isEmpty())
+            throw new InformationMissingException(4);
+    }
+
     //Méthode invoquée pour déterminer si l'expression a une inconnue et savoir laquelle
     public void verifierInconnueExpression() throws InconnueException
     {
         String exp      = this.getExpression();
-        ArrayList<Character> operateurs = new ArrayList<Character>() ;
-        operateurs.add('+');
-        operateurs.add('-');
-        operateurs.add('*');
-        operateurs.add('/');
-        operateurs.add('^');
-        operateurs.add('(');
-        operateurs.add(')');
 
         //Boucle itérative parcourant l'expression donnée en argument
         for (int i = 0; i < exp.length(); i++)
@@ -171,10 +179,11 @@ public class MoEtudeFonction
                             throw new InconnueException(5);
                         }
                     }
+                    //Sinon on affecte cette inconnue
                     this.setIsInconnue(true);
                     this.setTempInconnue(Character.toString(exp.charAt(i)));
                 }
-                //Si un opérateur le précède et qu'il s'agit du dernier caractère
+                //Si la lettre courante n'est pas le premier caractère si un opérateur le précède et qu'il s'agit du dernier caractère
                 else if (i == (exp.length() -1) && operateurs.contains(exp.charAt(i-1)))
                 {
                     //Si jamais l'inconnue deja renseignée et qu'il s'agit d'une autre lettre que celle précédement trouvée
@@ -191,7 +200,7 @@ public class MoEtudeFonction
                     this.setTempInconnue(Character.toString(exp.charAt(i)));
                 }
                 //Si le caractère précédent est un opérateur et le suivant un opérateur aussi
-                else if (operateurs.contains(exp.charAt(i-1)) && operateurs.contains(exp.charAt(i+1)))
+                else if (i != 0 && operateurs.contains(exp.charAt(i-1)) && operateurs.contains(exp.charAt(i+1)))
                 {
                     //Si jamais l'inconnue deja renseignée et qu'il s'agit d'une autre lettre que celle précédement trouvée
                     if (isInconnue)
@@ -279,7 +288,7 @@ public class MoEtudeFonction
             throw new PasException(1);
 
         //Si le pas n'est pas un nombre entier ou decimal
-        try { Double.parseDouble(pas); }
+        try { Float.parseFloat(pas); }
         catch (NumberFormatException e) { throw new PasException(2); }
 
         //Si le pas est plus grand que la différence entre les intervalles
@@ -292,62 +301,84 @@ public class MoEtudeFonction
             throw new PasException(4);
 
         //Sinon on affecte la variable
-        this.setPas(Double.parseDouble(pas));
+        this.setPas(Float.parseFloat(pas));
     }
 
     //Méthode invoquée afin que l'expression entrée soit traitée par le module, les calculs sont effectués et stockés
     public void calcul()
     {
-        String temp ;
         String tempResult;
 
+        //Calcul du nombre de calcul que l'on va effectuer
+        Float t = (this.getItv_haut() - this.getItv_bas()) / this.getPas();
+        int nombreDeCalcul = Math.round(t);
+
         //Génération des indices
-        int nb_indices = this.getItv_haut() - this.getItv_bas() ;
-        for (int i = 0 ; i <= nb_indices ; i++)
+        double ind = 0.0;
+        for (int i = 0 ; i <= nombreDeCalcul ; i++)
         {
-            indices.add(this.getItv_bas()+i);
+            //On arrondi car la représentation des nombres décimaux en java donnerais de faux résultats
+            indices.add((double) Math.round((this.getItv_bas()+ind) * 100) / 100);
+            //On incrémente ce que l'on ajout à l'intervalle du bas afin d'avoir l'indice suivant
+            ind += pas;
         }
 
         //Génération des résultats
-        for (int x : indices)
+        for (Double x : indices)
         {
-            //Replacement dans l'expression de l'inconnu par le nombre courant de la liste indice
-            temp = this.getExpression().replaceAll("[" + this.getInconnue() + "]", Integer.toString(x));
-            //On calcul le résultat
-            resultat = moteurCalcul.evaluate("N(" + temp + ")");
-
-            //On récupère ce résultat
-            tempResult = resultat.toString();
-
-            //Si le calcul est une division par zéro, le modèle retournera une phrase
+            tempResult = moteurCalcul.evaluate("N(" + remplacerInconnueExpression(this.getExpression(), getInconnue(), x) +")").toString();
             if (Character.isLetter(tempResult.charAt(0)))
             {
-                resultats.add("Impossible");
-                System.out.println("Impossible");
+                resultats.add("NaN");
+                System.out.println("Nan");
             }
-            //Sinon il retournera un nombre que l'on formatera et qu'on ajoutera
             else
             {
                 resultats.add(df.format(Double.parseDouble(tempResult)));
                 System.out.println(df.format(Double.parseDouble(tempResult)));
             }
         }
+    }
 
+    //Méthode servant à remplacer dans une expression une inconnue par un indice
+    public String remplacerInconnueExpression(String exp, String inc, double ind)
+    {
+        String temp = exp, t1, t2 ;
+        String indice = Double.toString(ind);
 
-
-
-
-
-        //TODO A SUPPRIMER
-        /*
-        Double d = Double.parseDouble(
-                df.format(
-                        Double.parseDouble(
-                                resultat.toString())));
-        System.out.println(d);
+        for (int i = 0; i < temp.length(); i++)
+        {
+            //S'il s'agit d'une lettre différente de e
+            if (Character.isLetter(temp.charAt(i)) && temp.charAt(i) != 'e')
+            {
+                //Si il s'agit du premier caractère de l'expression et si le caractère qui le suit est un operateur
+                if (i == 0 && operateurs.contains(exp.charAt(i + 1))) {
+                    //Processus de remplacement
+                    t1 = temp.substring(i+1, temp.length());
+                    temp = indice + t1 ;
+                }
+                //Si la lettre courante n'est pas le premier caractère si un opérateur le précède et qu'il s'agit du dernier caractère
+                else if (i == (temp.length() - 1) && operateurs.contains(temp.charAt(i - 1))) {
+                    //Processus de remplacement
+                    t1 = temp.substring(0, i);
+                    temp = t1 + indice ;
+                }
+                //Si le caractère précédent est un opérateur et le suivant un opérateur aussi
+                else if (i != 0 && operateurs.contains(temp.charAt(i - 1)) && operateurs.contains(temp.charAt(i + 1))) {
+                    //Processus de remplacement
+                    t1 = temp.substring(0, i);
+                    t2 = temp.substring(i+1, temp.length());
+                    temp = t1 + indice + t2;
+                }
+                //Si il s'agit du premier et dernier caractère
+                else if (i == 0 && temp.length() == 1)
+                {
+                    //Processus de remplacement
+                    temp = indice;
+                }
+            }
         }
-        */
-
+        return temp;
     }
 
     //Méthode invoquée pour générer le code LaTex de l'expréssion rentrée.
@@ -357,6 +388,14 @@ public class MoEtudeFonction
         return resultat.toString();
     }
 
+
+    //Méthode d'exportation des nombres calculés
+    public void export()
+    {
+        //TODO FONCTION D'EXPORT VERS LE FICHIER EXTERNE !!!
+    }
+
+    //Méthode de réinitialisation
     public void reset()
     {
         this.expression = "";
@@ -366,4 +405,5 @@ public class MoEtudeFonction
         this.setTempInconnue("");
         this.setIsInconnue(false);
     }
+
 }

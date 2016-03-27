@@ -25,7 +25,7 @@ public class CoPopUpTableau
     @FXML private TableColumn   colonne_valeurs;
 
     //Données à afficher
-    private ArrayList<Integer>  indices         = new ArrayList<Integer>();                     //Contient la liste d'indices entrée par l'utilisateur
+    private ArrayList<Double> indices         = new ArrayList<>();                     //Contient la liste d'indices entrée par l'utilisateur
     private ArrayList<String>   resultats       = new ArrayList<String>();                      //Contient la liste des résultats selon les indices
     /* **********
     *************
@@ -34,11 +34,11 @@ public class CoPopUpTableau
     /**
      * GETTERS & SETTERS UTILES
      */
-    public ArrayList<Integer> getIndices() {
+    public ArrayList<Double> getIndices() {
         return indices;
     }
 
-    public void setIndices(ArrayList<Integer> indices) {
+    public void setIndices(ArrayList<Double> indices) {
         this.indices = indices;
     }
 
