@@ -3,11 +3,12 @@ package com.katoyikane.controleur.modules.etude;
 import com.katoyikane.exception.*;
 import com.katoyikane.modele.modules.etude.MoEtudeFonction;
 import com.katoyikane.vue.popup.PopUpCourbe;
-import com.katoyikane.vue.popup.PopUpTableau;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.Node;
+import javafx.scene.control.*;
+
+import java.util.Optional;
 
 /**
  * Created by christopher on 07/02/16.
@@ -37,6 +38,7 @@ public class CoEtudeFonction
 
     private MoEtudeFonction modele      = new MoEtudeFonction();   //Instance du modèle d'étude de fonction
     private String          inconnue    = "";
+    private Alert           alert;
 
     /* **********
     *************
@@ -115,6 +117,37 @@ public class CoEtudeFonction
     //Méthode invoquée lors d'un clic sur le bouton de génération de tableau
     @FXML private void btExportClic(ActionEvent event) throws Exception
     {
+        //Ouverture de l'alerte pour savoir s'il s'agit d'une création ou d'un ajout à un fichier
+        alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Choix de la méthode d'export");
+        alert.setHeaderText("Nouveau ou ajouter à fichier existant ?");
+        alert.setContentText("Voulez vous ouvrir un fichier existant pour l'export ou utiliser un fichier existant ?");
+
+        ButtonType creer = new ButtonType("Créer");
+        ButtonType ouvrir = new ButtonType("Ouvrir");
+        ButtonType annuler = new ButtonType("Annuler", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(creer, ouvrir, annuler);
+        Optional<ButtonType> resultat = alert.showAndWait();
+        if (resultat.get() == creer)
+        {
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            modele.creationExport(((Node)event.getTarget()).getScene().getWindow());
+            alert.setTitle("Boite de confirmation");
+            alert.setHeaderText("Fichier créé.");
+            alert.setContentText("Le fichier a bien été créé.");
+            alert.showAndWait();
+        }
+        else
+        {
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            modele.ouvertureExport(((Node)event.getTarget()).getScene().getWindow());
+            alert.setTitle("Boite de confirmation");
+            alert.setHeaderText("Fichier ouvert.");
+            alert.setContentText("Le fichier a bien été ouvert.");
+            alert.showAndWait();
+        }
+
+        //Formatage et export
         modele.export();
     }
 

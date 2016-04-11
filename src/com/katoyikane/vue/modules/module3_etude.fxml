@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.katoyikane.controleur.modules.etude.CoEtudeFonction">
+<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.katoyikane.controleur.modules.etude.CoEtudeFonction">
    <children>
       <TitledPane animated="false" collapsible="false" prefHeight="300.0" prefWidth="600.0" text="Vérification de l'expression" textAlignment="CENTER" wrapText="true">
          <content>
@@ -69,13 +69,19 @@
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="saisie_intervalle_inf" alignment="CENTER" prefWidth="40.0" />
+                        <TextField fx:id="saisie_intervalle_inf" alignment="CENTER" prefWidth="40.0">
+                           <font>
+                              <Font size="10.0" />
+                           </font></TextField>
                         <Label alignment="CENTER" text=";">
                            <font>
                               <Font size="22.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="saisie_intervalle_sup" alignment="CENTER" prefWidth="40.0" />
+                        <TextField fx:id="saisie_intervalle_sup" alignment="CENTER" prefWidth="40.0">
+                           <font>
+                              <Font size="10.0" />
+                           </font></TextField>
                         <Label alignment="CENTER" text="]">
                            <font>
                               <Font size="22.0" />
@@ -87,7 +93,7 @@
                         <Insets left="3.0" />
                      </GridPane.margin>
                   </HBox>
-                  <TextField fx:id="vue_latex" editable="false" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="4" GridPane.rowSpan="2">
+                  <TextField fx:id="vue_latex" editable="false" focusTraversable="false" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="4" GridPane.rowSpan="2">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
@@ -101,6 +107,9 @@
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
+                           <font>
+                              <Font size="10.0" />
+                           </font>
                         </TextField>
                      </children>
                   </HBox>
@@ -111,6 +120,9 @@
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>
+                           <font>
+                              <Font size="10.0" />
+                           </font>
                         </TextField>
                      </children>
                   </HBox>

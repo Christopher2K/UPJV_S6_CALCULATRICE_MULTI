@@ -1,11 +1,16 @@
 package com.katoyikane.modele.modules.etude;
 
 import com.katoyikane.exception.*;
+import com.katoyikane.modele.Exportateur;
+import javafx.scene.control.Alert;
+import javafx.stage.FileChooser;
+import javafx.stage.Window;
 import org.matheclipse.core.eval.ExprEvaluator;
 import org.matheclipse.core.interfaces.IExpr;
 import org.matheclipse.parser.client.SyntaxError;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.Math;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -37,8 +42,8 @@ public class MoEtudeFonction
 
     private final ArrayList<Character> operateurs = new ArrayList<Character>(Arrays.asList('+', '-', '*', '/', '^', '(', ')')) ;     //Liste stockant les opérateurs utiles ici
 
-    private File f ;
-    private Date date;
+    //Pour l'export
+    private Exportateur exportateur;
 
     private ExprEvaluator       moteurCalcul    = new ExprEvaluator(false, 1);            //Création d'un objet prenant en compte des expressions de calculs de type IExpr
     private IExpr               resultat ;                                                //Variable stockant le résultat renvoyé par la méthode de calcul de l'objet ExprEvaluator
@@ -330,12 +335,13 @@ public class MoEtudeFonction
             if (Character.isLetter(tempResult.charAt(0)))
             {
                 resultats.add("NaN");
-                System.out.println("Nan");
             }
             else
             {
-                resultats.add(df.format(Double.parseDouble(tempResult)));
-                System.out.println(df.format(Double.parseDouble(tempResult)));
+                if(tempResult.contains("e"))
+                    resultats.add(tempResult);
+                else
+                    resultats.add(df.format(Double.parseDouble(tempResult)));
             }
         }
     }
@@ -384,16 +390,52 @@ public class MoEtudeFonction
     //Méthode invoquée pour générer le code LaTex de l'expréssion rentrée.
     public String generationLatex()
     {
-        resultat = moteurCalcul.evaluate("TexForm(" + this.getExpression() + ")");
-        return resultat.toString();
+        return moteurCalcul.evaluate("TexForm(" + this.getExpression() + ")").toString();
     }
-
 
     //Méthode d'exportation des nombres calculés
-    public void export()
+    public void export() throws IOException
     {
-        //TODO FONCTION D'EXPORT VERS LE FICHIER EXTERNE !!!
+        //Génération des lignes de mprésentation
+        String module =
+                "MODULE : ETUDE DE FONCTION\n" +
+                "DATE : " + this.exportateur.getAujourdhui()  + "\n" +
+                "OBJET : Restitution des résultats\n\n" +
+                "FONCTION : " + this.getExpression() + "\n" +
+                "LATEX : " + moteurCalcul.evaluate("TexForm(" + this.getExpression() + ")").toString() + "\n\n" +
+                "INCONNUE:\t\tRESULTATS:\n" ;
+
+        //Génération de l'affichage des résultats
+        String affichage = "";
+        for (int i = 0 ; i < indices.size(); i++)
+        {
+            affichage = affichage + Double.toString(indices.get(i)) + "\t\t" + resultats.get(i) + "\n";
+        }
+        exportateur.ecriture(module);
+        exportateur.ecriture(affichage);
+        exportateur.separer();
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Boite de confirmation");
+        alert.setHeaderText("Données enregistrées");
+        alert.setContentText("Les données ont bien écrites dans \"" + exportateur.getF().getAbsolutePath() + "\".");
+        alert.showAndWait();
     }
+
+    //Méthode de création d'un fichier
+    public void creationExport(Window w) throws IOException
+    {
+        this.exportateur = new Exportateur(w);
+        this.exportateur.creerExport();
+    }
+
+    //Méthode d'overture d'un fichier
+    public void ouvertureExport(Window w) throws IOException
+    {
+        this.exportateur = new Exportateur(w);
+        this.exportateur.ouvrirExport();
+    }
+
 
     //Méthode de réinitialisation
     public void reset()
@@ -404,6 +446,7 @@ public class MoEtudeFonction
         this.setInconnue("");
         this.setTempInconnue("");
         this.setIsInconnue(false);
+        this.exportateur = null;
     }
 
 }

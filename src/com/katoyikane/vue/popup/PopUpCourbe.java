@@ -23,7 +23,7 @@ public class PopUpCourbe
         Stage fenetreCourbe = new Stage();
         Parent root;
         //Ajout du layout FXML
-        root = FXMLLoader.load(PopUpTableau.class.getResource("../modules/module3_courbe.fxml"));
+        root = FXMLLoader.load(PopUpCourbe.class.getResource("../modules/module3_courbe.fxml"));
 
         //Création de la scene
         final Scene scene = new Scene(root);

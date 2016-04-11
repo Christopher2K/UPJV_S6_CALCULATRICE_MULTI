@@ -16,7 +16,6 @@ public class Main extends Application
 {
     public static void main(String args[]){
         launch(args);
-        System.out.println("OK");
     }
 
     @Override
@@ -37,6 +36,7 @@ public class Main extends Application
             fenetrePrincipale.setResizable(false);
             fenetrePrincipale.setTitle("PROJET UPJV 2016 KATOYI & ADAMA : Calculatrice multi-fonctions");
             fenetrePrincipale.setScene(scene);
+            primaryStage.setOnCloseRequest(event -> {primaryStage.close();});
             fenetrePrincipale.show();
         }
         catch (Exception e)

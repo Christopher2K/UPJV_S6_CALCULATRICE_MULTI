@@ -63,7 +63,7 @@
                               <Image url="@../images/f_de_x_logo.png" />
                            </image>
                         </ImageView>
-                        <TextField fx:id="vue_latex" editable="false" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="4" GridPane.rowSpan="2">
+                        <TextField fx:id="vue_latex" editable="false" focusTraversable="false" GridPane.columnIndex="1" GridPane.columnSpan="4" GridPane.rowIndex="4" GridPane.rowSpan="2">
                            <GridPane.margin>
                               <Insets left="10.0" />
                            </GridPane.margin>
@@ -114,9 +114,8 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button fx:id="bt_resolution" disable="true" mnemonicParsing="false" onAction="#btResolutionClic" prefHeight="40.0" text="Résolution" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Button fx:id="bt_img" disable="true" mnemonicParsing="false" onAction="#btLatexImgClic" prefHeight="40.0" text="Générer image LaTex" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Button fx:id="bt_export_fichier" disable="true" mnemonicParsing="false" onAction="#btExportClic" prefHeight="40.0" text="Exporter" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Button fx:id="bt_resolution" disable="true" mnemonicParsing="false" onAction="#btResolutionClic" prefHeight="40.0" text="Résoudre" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Button fx:id="bt_export_fichier" disable="true" mnemonicParsing="false" onAction="#btExportClic" prefHeight="40.0" text="Exporter" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                </children>
             </GridPane>
          </content>

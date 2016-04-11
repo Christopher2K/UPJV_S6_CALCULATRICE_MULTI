@@ -2,13 +2,14 @@ package com.katoyikane.controleur.modules.solveur;
 
 import com.katoyikane.exception.*;
 import com.katoyikane.modele.modules.solveur.MoSolveurEquation;
-import com.katoyikane.vue.popup.PopUpEqSecondDegre;
-import com.katoyikane.vue.popup.PopUpEqSimple;
+import com.katoyikane.vue.popup.PopUpSolveur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
+import javafx.scene.Node;
+import javafx.scene.control.*;
+
+import java.io.IOException;
+import java.util.Optional;
 
 /**
  * Created by christopher on 07/02/16.
@@ -28,7 +29,6 @@ public class CoSolveurEquation
     @FXML private Button bt_valider ;
     @FXML private Button bt_reset ;
     @FXML private Button bt_resolution;
-    @FXML private Button bt_img ;
     @FXML private Button bt_export_fichier ;
     @FXML private TextField saisie_pt_gauche ;
     @FXML private TextField saisie_pt_droite ;
@@ -36,6 +36,7 @@ public class CoSolveurEquation
     @FXML private TextField vue_latex ;
 
     private MoSolveurEquation modele = new MoSolveurEquation();
+    private Alert alert;
 
     /* **********
     *************
@@ -47,7 +48,7 @@ public class CoSolveurEquation
      * L'attribution des écouteurs à un composant se fait dans : src/com.katoyikane/vue/modules/module4_solveur.fxml
      */
     //Méthode invoquée lors du clic sur le bouton de vérification de l'ensemble de l'équation
-    @FXML private void btValiderClic(ActionEvent event) throws SyntaxeFonctionException, InformationMissingException, InconnueException
+    @FXML private void btValiderClic(ActionEvent event) throws SyntaxeFonctionException, InformationMissingException, InconnueException, EquationException
     {
         try
         {
@@ -75,17 +76,18 @@ public class CoSolveurEquation
             vue_latex.setText(modele.generationLatex());
 
             //Résolution de l'équation
-            System.out.println(modele.resolution());
-
+            modele.setSolution(modele.resolution());
+            modele.genererListeSolutions();
 
             //Activation des boutons
             bt_export_fichier.setDisable(false);
-            bt_img.setDisable(false);
             bt_resolution.setDisable(false);
         }
         catch (SyntaxeFonctionException e)      {reset();}
         catch (InformationMissingException e)   {reset();}
         catch (InconnueException e)             {reset();}
+        catch (EquationException e)             {reset();}
+
 
     }
 
@@ -99,26 +101,51 @@ public class CoSolveurEquation
         reset(vue_latex);
 
         bt_export_fichier.setDisable(true);
-        bt_img.setDisable(true);
         bt_resolution.setDisable(true);
     }
 
     //Méthode invoquée lors d'un clic sur un des deux bouton de résolution
     @FXML private void btResolutionClic(ActionEvent event) throws Exception
     {
-
-    }
-
-    //Méthode invoquée lors d'un clic sur le bouton permettant d'afficher une image LaTex
-    @FXML private void btLatexImgClic(ActionEvent event)
-    {
-
+        //Invocation de la méthode d'affichage du popUp
+        PopUpSolveur.afficher(modele.getEquation(), modele.getInconnue(), modele.getListeSolutions());
     }
 
     //Méthode invoquées lors d'un clic sur le bouton permettant l'export des données dans un fichier
-    @FXML private void btExportClic(ActionEvent event)
+    @FXML private void btExportClic(ActionEvent event) throws IOException
     {
+        //Ouverture de l'alerte pour savoir s'il s'agit d'une création ou d'un ajout à un fichier
+        alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Choix de la méthode d'export");
+        alert.setHeaderText("Nouveau ou ajouter à fichier existant ?");
+        alert.setContentText("Voulez vous ouvrir un fichier existant pour l'export ou utiliser un fichier existant ?");
+        ButtonType creer = new ButtonType("Créer");
+        ButtonType ouvrir = new ButtonType("Ouvrir");
+        ButtonType annuler = new ButtonType("Annuler", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(creer, ouvrir, annuler);
+        Optional<ButtonType> resultat = alert.showAndWait();
 
+        if (resultat.get() == creer)
+        {
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            modele.creationExport(((Node)event.getTarget()).getScene().getWindow());
+            alert.setTitle("Boite de confirmation");
+            alert.setHeaderText("Fichier créé.");
+            alert.setContentText("Le fichier a bien été créé.");
+            alert.showAndWait();
+        }
+        else
+        {
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            modele.ouvertureExport(((Node)event.getTarget()).getScene().getWindow());
+            alert.setTitle("Boite de confirmation");
+            alert.setHeaderText("Fichier ouvert.");
+            alert.setContentText("Le fichier a bien été ouvert.");
+            alert.showAndWait();
+        }
+
+        //Formatage et export
+        modele.export();
     }
 
     /* **********
@@ -136,7 +163,6 @@ public class CoSolveurEquation
     {
         modele.reset();
         bt_export_fichier.setDisable(true);
-        bt_img.setDisable(true);
         bt_resolution.setDisable(true);
     }
 
