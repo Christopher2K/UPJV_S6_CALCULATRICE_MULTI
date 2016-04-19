@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import org.matheclipse.core.eval.exception.WrongArgumentType;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -48,7 +49,8 @@ public class CoSolveurEquation
      * L'attribution des écouteurs à un composant se fait dans : src/com.katoyikane/vue/modules/module4_solveur.fxml
      */
     //Méthode invoquée lors du clic sur le bouton de vérification de l'ensemble de l'équation
-    @FXML private void btValiderClic(ActionEvent event) throws SyntaxeFonctionException, InformationMissingException, InconnueException, EquationException
+    @FXML private void btValiderClic(ActionEvent event) throws SyntaxeFonctionException, InformationMissingException,
+            InconnueException, EquationException, WrongArgumentType
     {
         try
         {
@@ -87,6 +89,7 @@ public class CoSolveurEquation
         catch (InformationMissingException e)   {reset();}
         catch (InconnueException e)             {reset();}
         catch (EquationException e)             {reset();}
+        catch (WrongArgumentType e)             {reset();}
 
 
     }

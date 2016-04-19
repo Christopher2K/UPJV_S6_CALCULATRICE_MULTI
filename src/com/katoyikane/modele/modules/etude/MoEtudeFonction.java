@@ -165,16 +165,26 @@ public class MoEtudeFonction
     public void verifierInconnueExpression() throws InconnueException
     {
         String exp      = this.getExpression();
+        exp = moteurCalcul.evaluate("Hold(" + exp + ")").toString();
 
-        //Boucle itérative parcourant l'expression donnée en argument
+        //Liste stockant les opérateurs
+        ArrayList<Character> operateurs = new ArrayList<Character>() ;
+        operateurs.add('+');
+        operateurs.add('-');
+        operateurs.add('*');
+        operateurs.add('/');
+        operateurs.add('^');
+        operateurs.add('(');
+        operateurs.add(')');
+
+        //Boucle cherchant a déterminer les inconnues dans la fonction
         for (int i = 0; i < exp.length(); i++)
         {
-            //SI on rencontre une lettre
+            //S'il s'agit d'une lettre différente de e
             if (Character.isLetter(exp.charAt(i)) && exp.charAt(i) != 'e')
             {
-
                 //Si il s'agit du premier caractère de l'expression et si le caractère qui le suit est un operateur
-                if (i == 0 && operateurs.contains(exp.charAt(i+1)))
+                if (i == 0 && operateurs.contains(exp.charAt(i + 1)))
                 {
                     //Si jamais l'inconnue deja renseignée et qu'il s'agit d'une autre lettre que celle précédement trouvée
                     if (isInconnue)
@@ -184,12 +194,12 @@ public class MoEtudeFonction
                             throw new InconnueException(5);
                         }
                     }
-                    //Sinon on affecte cette inconnue
-                    this.setIsInconnue(true);
+                    //Sinon il s'agit bien d'une inconnue donc
+                    isInconnue = true;
                     this.setTempInconnue(Character.toString(exp.charAt(i)));
                 }
                 //Si la lettre courante n'est pas le premier caractère si un opérateur le précède et qu'il s'agit du dernier caractère
-                else if (i == (exp.length() -1) && operateurs.contains(exp.charAt(i-1)))
+                else if (i == (exp.length() - 1) && operateurs.contains(exp.charAt(i - 1)))
                 {
                     //Si jamais l'inconnue deja renseignée et qu'il s'agit d'une autre lettre que celle précédement trouvée
                     if (isInconnue)
@@ -199,13 +209,12 @@ public class MoEtudeFonction
                             throw new InconnueException(5);
                         }
                     }
-
-                    //Il s'agit bien d'une inconnue donc
-                    this.setIsInconnue(true);
+                    //Sinon il s'agit bien d'une inconnue donc
+                    isInconnue = true;
                     this.setTempInconnue(Character.toString(exp.charAt(i)));
                 }
                 //Si le caractère précédent est un opérateur et le suivant un opérateur aussi
-                else if (i != 0 && operateurs.contains(exp.charAt(i-1)) && operateurs.contains(exp.charAt(i+1)))
+                else if (i != 0 && operateurs.contains(exp.charAt(i - 1)) && operateurs.contains(exp.charAt(i + 1)))
                 {
                     //Si jamais l'inconnue deja renseignée et qu'il s'agit d'une autre lettre que celle précédement trouvée
                     if (isInconnue)
@@ -215,9 +224,8 @@ public class MoEtudeFonction
                             throw new InconnueException(5);
                         }
                     }
-
-                    //Il s'agit bien d'une inconnue donc
-                    this.setIsInconnue(true);
+                    //Sinon il s'agit bien d'une inconnue donc
+                    isInconnue = true;
                     this.setTempInconnue(Character.toString(exp.charAt(i)));
                 }
             }
@@ -228,10 +236,6 @@ public class MoEtudeFonction
     //Méthode de vérification de l'inconnue
     public void verifierInconnue(String inconnue, String exp) throws InconnueException
     {
-        //Si l'inconnue est vide
-        if (inconnue.isEmpty())
-            throw new InconnueException(0);
-
         //Si l'inconnue est supérieure à deux caractères
         if (inconnue.length() > 1)
             throw new InconnueException(1);
@@ -243,7 +247,7 @@ public class MoEtudeFonction
         //Si l'inconnue n'est pas dans l'expression alors que la vérification précédente en a trouvé une
         if (isInconnue)
         {
-            if (!this.getExpression().contains(inconnue))
+            if (!inconnue.equals(tempInconnue))
                 throw new InconnueException(3);
         }
 
@@ -390,7 +394,7 @@ public class MoEtudeFonction
     //Méthode invoquée pour générer le code LaTex de l'expréssion rentrée.
     public String generationLatex()
     {
-        return moteurCalcul.evaluate("TexForm(" + this.getExpression() + ")").toString();
+        return moteurCalcul.evaluate("TexForm(Hold(" + this.getExpression() + "))").toString();
     }
 
     //Méthode d'exportation des nombres calculés

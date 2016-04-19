@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="symja-2016-01-09">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../Java/Librairies/symjaMMA/symja-2016-01-09.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

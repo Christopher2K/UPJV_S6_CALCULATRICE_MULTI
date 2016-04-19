@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.katoyikane.controleur.modules.calculatrice.CoCalculatriceScientifique">
+   <children>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <VBox prefHeight="80.0" prefWidth="450.0">
+               <children>
+                  <Label fx:id="affichage_calcul" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="40.0" prefWidth="450.0" textAlignment="RIGHT" wrapText="true">
+                     <font>
+                        <Font name="Verdana Italic" size="15.0" />
+                     </font>
+                  </Label>
+                  <TextArea fx:id="affichage_resultat" editable="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="440.0" scrollLeft="1230923.0" text="0.0">
+                     <font>
+                        <Font name="Verdana Bold" size="13.0" />
+                     </font>
+                  </TextArea>
+               </children>
+               <HBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </HBox.margin>
+            </VBox>
+            <Button fx:id="bt_egal" mnemonicParsing="false" onAction="#btEgalClic" prefHeight="90.0" prefWidth="116.0" text="=">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="bt_clear" mnemonicParsing="false" onAction="#btClearClic" prefHeight="90.0" prefWidth="40.0" text="C">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <HBox prefHeight="307.0" prefWidth="600.0">
+         <children>
+            <TitledPane collapsible="false" contentDisplay="CENTER" prefHeight="300.0" prefWidth="300.0" text="Nombres" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true">
+               <content>
+                  <GridPane prefHeight="256.0" prefWidth="299.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button fx:id="bt_1" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btClassiqueClic" prefHeight="55.0" prefWidth="86.0" text="1">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Button>
+                        <Button fx:id="bt_2" mnemonicParsing="false" onAction="#btClassiqueClic" prefHeight="55.0" prefWidth="87.0" text="2" GridPane.columnIndex="1" />
+                        <Button fx:id="bt_3" mnemonicParsing="false" onAction="#btClassiqueClic" prefHeight="55.0" prefWidth="86.0" text="3" GridPane.columnIndex="2" />
+                        <Button fx:id="bt_4" mnemonicParsing="false" onAction="#btClassiqueClic" prefHeight="55.0" prefWidth="86.0" text="4" GridPane.rowIndex="1" />
+                        <Button fx:id="bt_5" mnemonicParsing="false" onAction="#btClassiqueClic" prefHeight="55.0" prefWidth="87.0" text="5" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button fx:id="bt_6" mnemonicParsing="false" onAction="#btClassiqueClic" prefHeight="55.0" prefWidth="86.0" text="6" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Button fx:id="bt_7" mnemonicParsing="false" onAction="#btClassiqueClic" prefHeight="55.0" prefWidth="86.0" text="7" GridPane.rowIndex="2" />
+                        <Button fx:id="bt_8" mnemonicParsing="false" onAction="#btClassiqueClic" prefHeight="55.0" prefWidth="87.0" text="8" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button fx:id="bt_9" mnemonicParsing="false" onAction="#btClassiqueClic" prefHeight="55.0" prefWidth="86.0" text="9" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <Button fx:id="bt_0" mnemonicParsing="false" onAction="#btClassiqueClic" prefHeight="55.0" prefWidth="176.0" text="0" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                        <Button fx:id="bt_point" mnemonicParsing="false" onAction="#btClassiqueClic" prefHeight="55.0" prefWidth="86.0" text="." GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </GridPane>
+               </content>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </TitledPane>
+            <TitledPane animated="false" collapsible="false" prefHeight="300.0" prefWidth="300.0" text="Opérateurs avancés">
+               <content>
+                  <GridPane prefHeight="242.0" prefWidth="300.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button fx:id="bt_plus" mnemonicParsing="false" onAction="#btClassiqueClic" prefHeight="35.0" prefWidth="70.0" text="+">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Button>
+                        <Button fx:id="bt_moins" mnemonicParsing="false" onAction="#btClassiqueClic" prefHeight="35.0" prefWidth="70.0" text="-" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets left="3.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <Button fx:id="bt_multiplication" mnemonicParsing="false" onAction="#btClassiqueClic" prefHeight="35.0" prefWidth="70.0" text="*" GridPane.columnIndex="2">
+                           <GridPane.margin>
+                              <Insets left="3.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <Button fx:id="bt_division" mnemonicParsing="false" onAction="#btClassiqueClic" prefHeight="35.0" prefWidth="70.0" text="/" GridPane.columnIndex="3">
+                           <GridPane.margin>
+                              <Insets left="3.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <Button fx:id="bt_pgauche" mnemonicParsing="false" onAction="#btClassiqueClic" prefHeight="35.0" prefWidth="70.0" text="(" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Button>
+                        <Button fx:id="bt_pdroite" mnemonicParsing="false" onAction="#btClassiqueClic" prefHeight="35.0" prefWidth="70.0" text=")" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="3.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <Button fx:id="bt_cos" mnemonicParsing="false" onAction="#btOperateurTrigoClic" prefHeight="35.0" prefWidth="70.0" text="cos" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="3.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <Button fx:id="bt_arccos" mnemonicParsing="false" onAction="#btOperateurTrigoClic" prefHeight="35.0" prefWidth="70.0" text="arccos" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           <GridPane.margin>
+                              <Insets left="3.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <Button fx:id="bt_sin" mnemonicParsing="false" onAction="#btOperateurTrigoClic" prefHeight="35.0" prefWidth="70.0" text="sin" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Button>
+                        <Button fx:id="bt_arcsin" mnemonicParsing="false" onAction="#btOperateurTrigoClic" prefHeight="35.0" prefWidth="70.0" text="arcsin" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets left="3.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <Button fx:id="bt_tan" mnemonicParsing="false" onAction="#btOperateurTrigoClic" prefHeight="35.0" prefWidth="70.0" text="tan" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets left="3.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <Button fx:id="bt_arctan" mnemonicParsing="false" onAction="#btOperateurTrigoClic" prefHeight="35.0" prefWidth="70.0" text="arctan" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                           <GridPane.margin>
+                              <Insets left="3.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <Button fx:id="bt_racinecarree" mnemonicParsing="false" onAction="#btOperateurScientifiqueClic" prefHeight="35.0" prefWidth="70.0" text="√(x)" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </Button>
+                        <Button fx:id="bt_puissance" mnemonicParsing="false" onAction="#btOperateurScientifiqueClic" prefHeight="35.0" prefWidth="70.0" text="^(x)" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets left="3.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <Button fx:id="bt_ln" mnemonicParsing="false" onAction="#btOperateurScientifiqueClic" prefHeight="35.0" prefWidth="70.0" text="ln(x)" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets left="3.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <Button fx:id="bt_exponentielle" mnemonicParsing="false" onAction="#btOperateurScientifiqueClic" prefHeight="35.0" prefWidth="70.0" text="e^(x)" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets left="3.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <Button fx:id="bt_pi" mnemonicParsing="false" onAction="#btOperateurScientifiqueClic" prefHeight="35.0" prefWidth="70.0" text="π" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                           <GridPane.margin>
+                              <Insets left="3.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <Button fx:id="bt_factorielle" mnemonicParsing="false" onAction="#btOperateurScientifiqueClic" prefHeight="35.0" prefWidth="70.0" text="(x)!" GridPane.rowIndex="4">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin></Button>
+                        <Button fx:id="bt_inverse" mnemonicParsing="false" onAction="#btInverseClic" prefHeight="35.0" prefWidth="70.0" text="1/x" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                           <GridPane.margin>
+                              <Insets left="3.0" />
+                           </GridPane.margin>
+                        </Button>
+                        <Button fx:id="bt_oppose" mnemonicParsing="false" onAction="#btOpposeClic" prefHeight="35.0" prefWidth="70.0" text="+/-" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                           <GridPane.margin>
+                              <Insets left="3.0" />
+                           </GridPane.margin>
+                        </Button>
+                     </children>
+                  </GridPane>
+               </content>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </TitledPane>
+         </children>
+      </HBox>
+   </children>
+</VBox>

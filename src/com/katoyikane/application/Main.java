@@ -25,7 +25,7 @@ public class Main extends Application
         try
         {
             //Chemin vers le fichier FXML
-            final URL url = getClass().getResource("../vue/FenetrePrincipale.fxml");
+            final URL url = getClass().getResource("/com/katoyikane/vue/FenetrePrincipale.fxml");
             //Creation du loader
             final FXMLLoader fxmlLoader = new FXMLLoader(url);
             //Chargement du fichier FXML
@@ -36,7 +36,7 @@ public class Main extends Application
             fenetrePrincipale.setResizable(false);
             fenetrePrincipale.setTitle("PROJET UPJV 2016 KATOYI & ADAMA : Calculatrice multi-fonctions");
             fenetrePrincipale.setScene(scene);
-            primaryStage.setOnCloseRequest(event -> {primaryStage.close();});
+            fenetrePrincipale.setOnCloseRequest(event -> {primaryStage.close();});
             fenetrePrincipale.show();
         }
         catch (Exception e)

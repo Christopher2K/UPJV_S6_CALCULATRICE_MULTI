@@ -22,6 +22,13 @@ public class EquationException extends Exception
                 alert.setContentText("L'algorithme de ce solveur ne permet pas la résolution de cette équation");
                 alert.showAndWait();
                 break;
+            case 1 :
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur : equation");
+                alert.setHeaderText("Equation impossible");
+                alert.setContentText("Cette equation est impossible à résoudre.");
+                alert.showAndWait();
+                break;
         }
     }
 }

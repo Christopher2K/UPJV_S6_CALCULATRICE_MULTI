@@ -8,6 +8,7 @@ import com.katoyikane.modele.Exportateur;
 import javafx.scene.control.Alert;
 import javafx.stage.Window;
 import org.matheclipse.core.eval.ExprEvaluator;
+import org.matheclipse.core.eval.exception.WrongArgumentType;
 import org.matheclipse.core.interfaces.IExpr;
 import org.matheclipse.core.reflection.system.CharacteristicPolynomial;
 import org.matheclipse.parser.client.SyntaxError;
@@ -192,18 +193,23 @@ public class MoSolveurEquation
         return resultat.toString();
     }
 
-    public String resolution() throws EquationException
+    public String resolution() throws EquationException,WrongArgumentType
     {
-        resultat = moteurCalcul.evaluate("Solve(" + this.getEquation() + "," + this.getInconnue() +")");
-        String temp = resultat.toString();
-        if (temp.charAt(0) != '{')
+        try
         {
-            throw new EquationException(0);
+            resultat = moteurCalcul.evaluate("Solve(" + this.getEquation() + "," + this.getInconnue() +")");
+            String temp = resultat.toString();
+            if (temp.charAt(0) != '{')
+            {
+                throw new EquationException(0);
+            }
+            else
+            {
+                return temp;
+            }
         }
-        else
-        {
-            return temp;
-        }
+        catch (WrongArgumentType e) { throw  new EquationException(1); }
+
     }
 
     public void genererListeSolutions()
@@ -233,11 +239,6 @@ public class MoSolveurEquation
         }
     }
 
-
-    public void generationImgLatex()
-    {
-        //METHODE DE GENERATION D'IMAGE A TERMINER POUR LE LATEX
-    }
 
     public void export()
     {

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="Simple">
+               <content>
+                  <fx:include source="modules/module1_simple.fxml" />
+               </content>
+            </Tab>
+            <Tab text="Scientifique">
+               <content>
+                  <fx:include source="modules/module2_scientifique.fxml" />
+               </content>
+            </Tab>
+            <Tab text="Etude">
+               <content>
+                  <fx:include source="modules/module3_etude.fxml" />
+               </content>
+            </Tab>
+            <Tab text="Solveur">
+               <content>
+                  <fx:include source="modules/module4_solveur.fxml" />
+               </content>
+            </Tab>
+            <Tab text="Dérivation">
+               <content>
+                  <fx:include source="modules/module5_derivation.fxml" />
+               </content>
+            </Tab>
+            <Tab text="Factorisation">
+               <content>
+                  <fx:include source="modules/module6_factorisation.fxml" />
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

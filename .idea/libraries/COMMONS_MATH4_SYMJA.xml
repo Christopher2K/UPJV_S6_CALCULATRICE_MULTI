@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="COMMONS_MATH4_SYMJA">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../Java/Librairies/symjaMMA/COMMONS_MATH4_SYMJA.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Java/Librairies/symjaMMA/log4j-1.2.11.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

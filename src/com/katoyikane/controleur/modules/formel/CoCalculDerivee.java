@@ -1,5 +1,8 @@
 package com.katoyikane.controleur.modules.formel;
 
+import com.katoyikane.exception.InconnueException;
+import com.katoyikane.exception.InformationMissingException;
+import com.katoyikane.exception.SyntaxeFonctionException;
 import com.katoyikane.modele.modules.formel.MoCalculDerivee;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,8 +46,23 @@ public class CoCalculDerivee
      * L'attribution des écouteurs à un composant se fait dans : src/com.katoyikane/vue/modules/module5_derivee.fxml
      */
     //Méthode invoquuée lors du clic sur le bouton de vérification
-    @FXML private void btValiderClic(ActionEvent event)
+    @FXML private void btValiderClic(ActionEvent event) throws InformationMissingException, InconnueException,
+            SyntaxeFonctionException
     {
+		try
+		{
+			//Verification et affectation des valeurs
+			modele.verifierIntegrite(saisie_expression.getText(), saisie_inconnue.getText());
+			modele.verifierSyntaxe(saisie_expression.getText());
+			modele.verifierInconnueExpression(saisie_expression.getText());
+			modele.verifierInconnue(saisie_inconnue.getText(), saisie_expression.getText());
+			vue_latex.setText(modele.generationLatex(saisie_expression.getText()));
+			bt_deriver.setDisable(false);
+		}
+		catch (InformationMissingException e) { modele = new MoCalculDerivee(); }
+		catch (InconnueException e) { modele = new MoCalculDerivee(); }
+		catch (SyntaxeFonctionException e) { modele = new MoCalculDerivee(); }
+
 
     }
 
@@ -59,12 +77,14 @@ public class CoCalculDerivee
         reset(affichage_resultat);
         reset(vue_latex);
         reset(vue_latex_resultat);
+		bt_deriver.setDisable(true);
     }
 
     //Méthode invoquée lors du clic sur le bouton d'affichage de la dérivée
     @FXML private void btDeriverClic(ActionEvent event)
     {
-
+		affichage_resultat.setText(modele.calculDerivee());
+		vue_latex_resultat.setText(modele.generationLatex(modele.calculDerivee()));
     }
 
     /* **********

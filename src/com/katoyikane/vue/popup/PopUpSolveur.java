@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -19,8 +20,9 @@ public class PopUpSolveur
         //Création d'une fenêtre vide
         Stage popUp = new Stage();
         //Ajout du layout FXML
-        FXMLLoader fxmlLoader = new FXMLLoader(PopUpSolveur.class.getResource("../modules/module4_resolution.fxml"));
-        Parent root = (Parent) fxmlLoader.load();
+        final URL url = PopUpSolveur.class.getResource("/com/katoyikane/vue/modules/module4_resolution.fxml");
+        FXMLLoader fxmlLoader = new FXMLLoader(url);
+        Parent root = fxmlLoader.load();
 
 
         //Chargement du controleur
